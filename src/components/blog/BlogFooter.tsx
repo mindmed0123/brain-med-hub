@@ -1,4 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
+import mindmedLogo from "@/assets/mindmed-logo.png";
 
 const BlogFooter = () => {
   const scrollTo = (id: string) => {
@@ -14,8 +15,8 @@ const BlogFooter = () => {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="mb-4 flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary">
-                <span className="font-serif text-xs font-bold text-primary-foreground">M</span>
+              <div className="flex h-7 w-7 items-center justify-center overflow-hidden rounded-md bg-foreground">
+                <img src={mindmedLogo} alt="MindMed" className="h-5 w-5 object-contain" />
               </div>
               <span className="font-serif text-lg font-bold text-foreground">MindMed</span>
               <span className="font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
