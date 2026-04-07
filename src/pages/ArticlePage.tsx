@@ -3,7 +3,6 @@ import { usePost } from "@/hooks/usePosts";
 import BlogHeader from "@/components/blog/BlogHeader";
 import BlogFooter from "@/components/blog/BlogFooter";
 import ConversionBlock from "@/components/blog/ConversionBlock";
-import CTASection from "@/components/blog/CTASection";
 import { ArrowLeft, Clock, Calendar, User } from "lucide-react";
 
 const ArticlePage = () => {

@@ -37,13 +37,18 @@ const BlogFooter = () => {
               Redes sociais
             </h4>
             <ul className="space-y-2">
-              {["LinkedIn", "Instagram", "YouTube"].map((social) => (
-                <li key={social}>
+              {[
+                { name: "LinkedIn", href: "https://www.linkedin.com/in/pedro-suassuna-8a3626386" },
+                { name: "Instagram", href: "https://www.instagram.com/mindmed_ia/" },
+              ].map((social) => (
+                <li key={social.name}>
                   <a
-                    href="#"
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="font-sans text-sm text-muted-foreground transition-colors hover:text-primary"
                   >
-                    {social}
+                    {social.name}
                   </a>
                 </li>
               ))}
