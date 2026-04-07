@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import mindmedLogo from "@/assets/mindmed-logo.png";
 
 const BlogHeader = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -58,8 +59,8 @@ const BlogHeader = () => {
       {/* Main nav */}
       <div className="container mx-auto flex h-16 items-center justify-between px-6">
         <Link to="/" className="group flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary transition-transform duration-200 group-hover:scale-105">
-            <span className="font-serif text-sm font-bold text-primary-foreground">M</span>
+          <div className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-md bg-foreground transition-transform duration-200 group-hover:scale-105">
+            <img src={mindmedLogo} alt="MindMed" className="h-6 w-6 object-contain" />
           </div>
           <div className="flex items-baseline gap-1.5">
             <span className="font-serif text-lg font-bold tracking-tight text-foreground">
