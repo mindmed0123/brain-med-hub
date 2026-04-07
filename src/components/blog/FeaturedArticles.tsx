@@ -26,8 +26,16 @@ const FeaturedArticles = () => {
               style={{ animationDelay: `${i * 0.15}s` }}
             >
               {/* Image placeholder */}
-              <div className="relative h-48 bg-secondary/50 overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent" />
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={article.image}
+                  alt={article.title}
+                  loading="lazy"
+                  width={1200}
+                  height={672}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
                 <div className="absolute bottom-3 left-3">
                   <span className="rounded-full bg-background/80 px-3 py-1 text-xs font-medium text-primary backdrop-blur-sm">
                     {article.categoryIcon} {article.category.replace("-", " ")}

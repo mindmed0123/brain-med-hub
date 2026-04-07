@@ -22,8 +22,15 @@ const ArticleList = () => {
               to={`/artigo/${article.slug}`}
               className="group flex gap-5 rounded-2xl border border-border/50 bg-card p-5 transition-all duration-300 hover:border-primary/30"
             >
-              <div className="hidden h-28 w-28 flex-shrink-0 overflow-hidden rounded-xl bg-secondary/50 sm:block">
-                <div className="h-full w-full bg-gradient-to-br from-primary/10 to-transparent" />
+              <div className="hidden h-28 w-28 flex-shrink-0 overflow-hidden rounded-xl sm:block">
+                <img
+                  src={article.image}
+                  alt={article.title}
+                  loading="lazy"
+                  width={112}
+                  height={112}
+                  className="h-full w-full object-cover"
+                />
               </div>
 
               <div className="flex flex-1 flex-col justify-between">
