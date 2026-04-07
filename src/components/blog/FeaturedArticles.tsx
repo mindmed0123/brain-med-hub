@@ -58,7 +58,7 @@ const FeaturedArticles = () => {
                   <Clock size={12} />
                   {post.read_time} min
                 </span>
-                <span className="flex items-center gap-1 font-sans text-xs font-semibold text-primary opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0 -translate-x-1">
+                <span className="flex items-center gap-1 font-sans text-xs font-semibold text-primary opacity-100 md:opacity-0 transition-all duration-200 group-hover:opacity-100 group-hover:translate-x-0 md:-translate-x-1">
                   Ler <ArrowRight size={12} />
                 </span>
               </div>

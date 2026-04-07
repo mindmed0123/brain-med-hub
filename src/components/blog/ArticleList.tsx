@@ -59,17 +59,17 @@ const ArticleList = () => {
               )}
 
               <div className="flex flex-1 flex-col justify-center">
-                <div className="mb-2 flex items-center gap-3 font-sans text-xs text-muted-foreground">
+                <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 font-sans text-xs text-muted-foreground">
                   <span className="font-semibold uppercase tracking-[0.15em] text-primary">
                     {post.category.replace(/-/g, " ")}
                   </span>
-                  <span className="text-border">·</span>
+                  <span className="hidden text-border sm:inline">·</span>
                   <span className="flex items-center gap-1">
                     <Clock size={11} />
                     {post.read_time} min
                   </span>
-                  <span className="text-border">·</span>
-                  <span>
+                  <span className="hidden text-border sm:inline">·</span>
+                  <span className="hidden sm:inline">
                     {new Date(post.created_at).toLocaleDateString("pt-BR", {
                       day: "numeric",
                       month: "short",
