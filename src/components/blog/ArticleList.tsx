@@ -8,8 +8,19 @@ const ArticleList = () => {
   if (isLoading) {
     return (
       <section className="py-16">
-        <div className="container mx-auto px-6 text-center">
-          <p className="text-muted-foreground">Carregando artigos...</p>
+        <div className="container mx-auto px-6">
+          <div className="space-y-6">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="flex gap-6 animate-pulse">
+                <div className="hidden h-24 w-36 rounded-lg bg-muted sm:block" />
+                <div className="flex-1 space-y-3">
+                  <div className="h-3 w-32 rounded bg-muted" />
+                  <div className="h-5 w-3/4 rounded bg-muted" />
+                  <div className="h-3 w-1/2 rounded bg-muted" />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     );
@@ -18,11 +29,16 @@ const ArticleList = () => {
   if (!posts?.length) return null;
 
   return (
-    <section className="py-16">
+    <section id="artigos" className="py-16 md:py-20">
       <div className="container mx-auto px-6">
-        <h2 className="mb-8 font-serif text-2xl font-bold text-foreground">
-          Todos os artigos
-        </h2>
+        <div className="mb-10">
+          <span className="mb-2 block font-sans text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Biblioteca
+          </span>
+          <h2 className="font-serif text-2xl font-bold text-foreground md:text-3xl">
+            Todos os artigos
+          </h2>
+        </div>
 
         <div className="divide-y divide-border">
           {posts.map((post) => (
@@ -32,27 +48,27 @@ const ArticleList = () => {
               className="group flex gap-6 py-6 first:pt-0 last:pb-0"
             >
               {post.cover_image && (
-                <div className="hidden h-24 w-36 flex-shrink-0 overflow-hidden rounded-lg sm:block">
+                <div className="hidden h-28 w-40 flex-shrink-0 overflow-hidden rounded-xl sm:block">
                   <img
                     src={post.cover_image}
                     alt={post.title}
                     loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
               )}
 
               <div className="flex flex-1 flex-col justify-center">
-                <div className="mb-1.5 flex items-center gap-3 font-sans text-xs text-muted-foreground">
-                  <span className="font-semibold uppercase tracking-widest text-primary">
+                <div className="mb-2 flex items-center gap-3 font-sans text-xs text-muted-foreground">
+                  <span className="font-semibold uppercase tracking-[0.15em] text-primary">
                     {post.category.replace(/-/g, " ")}
                   </span>
-                  <span>·</span>
+                  <span className="text-border">·</span>
                   <span className="flex items-center gap-1">
                     <Clock size={11} />
                     {post.read_time} min
                   </span>
-                  <span>·</span>
+                  <span className="text-border">·</span>
                   <span>
                     {new Date(post.created_at).toLocaleDateString("pt-BR", {
                       day: "numeric",
@@ -62,16 +78,16 @@ const ArticleList = () => {
                   </span>
                 </div>
 
-                <h3 className="mb-1 font-serif text-base font-bold text-foreground transition-colors group-hover:text-primary md:text-lg">
+                <h3 className="mb-1.5 font-serif text-base font-bold text-foreground transition-colors duration-200 group-hover:text-primary md:text-lg">
                   {post.title}
                 </h3>
 
-                <p className="hidden font-sans text-sm text-muted-foreground line-clamp-1 sm:block">
+                <p className="hidden font-sans text-sm leading-relaxed text-muted-foreground line-clamp-1 sm:block">
                   {post.subtitle}
                 </p>
               </div>
 
-              <div className="hidden items-center text-muted-foreground transition-colors group-hover:text-primary md:flex">
+              <div className="hidden items-center text-muted-foreground transition-all duration-200 group-hover:text-primary group-hover:translate-x-1 md:flex">
                 <ArrowRight size={16} />
               </div>
             </Link>
