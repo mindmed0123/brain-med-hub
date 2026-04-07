@@ -1,15 +1,12 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import TopBanner from "@/components/blog/TopBanner";
 import BlogHeader from "@/components/blog/BlogHeader";
 import HeroSection from "@/components/blog/HeroSection";
 import FeaturedArticles from "@/components/blog/FeaturedArticles";
-import ArticleList from "@/components/blog/ArticleList";
 import CategoriesSection from "@/components/blog/CategoriesSection";
-import LeadCaptureForm from "@/components/blog/LeadCaptureForm";
+import ArticleList from "@/components/blog/ArticleList";
 import AboutSection from "@/components/blog/AboutSection";
 import BlogFooter from "@/components/blog/BlogFooter";
-import SEOHead from "@/components/blog/SEOHead";
 
 const Index = () => {
   const { hash } = useLocation();
@@ -26,14 +23,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEOHead />
-      <TopBanner />
       <BlogHeader />
       <HeroSection />
       <FeaturedArticles />
-      <ArticleList />
       <CategoriesSection />
-      <LeadCaptureForm />
+      <ArticleList />
       <AboutSection />
       <BlogFooter />
     </div>

@@ -14,30 +14,6 @@ export type Database = {
   }
   public: {
     Tables: {
-      leads: {
-        Row: {
-          created_at: string
-          email: string
-          id: string
-          name: string
-          specialty: string | null
-        }
-        Insert: {
-          created_at?: string
-          email: string
-          id?: string
-          name: string
-          specialty?: string | null
-        }
-        Update: {
-          created_at?: string
-          email?: string
-          id?: string
-          name?: string
-          specialty?: string | null
-        }
-        Relationships: []
-      }
       posts: {
         Row: {
           author: string

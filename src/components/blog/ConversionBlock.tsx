@@ -2,20 +2,20 @@ import { ArrowRight } from "lucide-react";
 
 const ConversionBlock = () => {
   return (
-    <div className="my-12 rounded-2xl border border-primary/10 bg-muted/40 p-8 md:p-10">
-      <p className="mb-2 font-sans text-lg font-bold text-foreground">
-        Você ainda perde tempo com laudos manuais?
+    <div className="my-10 rounded-lg border-l-4 border-primary bg-secondary p-6">
+      <p className="mb-1 font-serif text-lg font-bold text-foreground">
+        Quer aplicar isso na sua clínica?
       </p>
-      <p className="mb-5 font-sans text-sm leading-relaxed text-muted-foreground">
-        A MindMed transcreve consultas, gera laudos automaticamente e devolve horas do seu dia. Sem complexidade.
+      <p className="mb-4 font-sans text-sm text-muted-foreground">
+        Converse com nosso time e descubra como a MindMed pode transformar seus resultados.
       </p>
       <a
         href="https://mindmed.online"
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center gap-2 rounded-xl bg-foreground px-5 py-2.5 font-sans text-sm font-semibold text-background transition-all hover:bg-foreground/90"
+        className="inline-flex items-center gap-2 font-sans text-sm font-semibold text-primary transition-colors hover:underline"
       >
-        Ver como funciona
+        Falar com a MindMed
         <ArrowRight size={14} />
       </a>
     </div>

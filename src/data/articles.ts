@@ -27,11 +27,11 @@ export interface Article {
 }
 
 export const categories = [
-  { id: "ia-medicina", label: "IA na Medicina", icon: "🧠", description: "Como a inteligência artificial está transformando diagnósticos e tratamentos." },
-  { id: "produtividade-medica", label: "Produtividade Médica", icon: "⚡", description: "Automação e eficiência para a rotina do profissional de saúde." },
-  { id: "gestao-clinicas", label: "Gestão de Clínicas", icon: "🏥", description: "Estratégias para modernizar operações e maximizar resultados." },
-  { id: "futuro-saude", label: "Futuro da Saúde", icon: "🚀", description: "Tendências e inovações que vão redefinir o setor." },
-  { id: "tecnologia-inovacao", label: "Tecnologia e Inovação", icon: "💡", description: "Novas ferramentas e avanços tecnológicos aplicados à saúde." },
+  { id: "ia-pratica", label: "IA na prática médica", icon: "🧠", description: "Como a inteligência artificial está transformando diagnósticos, tratamentos e a rotina clínica." },
+  { id: "impacto-financeiro", label: "Impacto financeiro", icon: "💰", description: "Dados concretos sobre aumento de receita e redução de custos com IA na saúde." },
+  { id: "estudos-cientificos", label: "Estudos científicos", icon: "📊", description: "Pesquisas revisadas e validadas sobre IA aplicada à medicina." },
+  { id: "gestao-clinicas", label: "Gestão de clínicas", icon: "🏥", description: "Estratégias para modernizar operações e maximizar resultados." },
+  { id: "futuro-medicina", label: "Futuro da medicina", icon: "🚀", description: "Tendências e inovações que vão redefinir o setor nos próximos anos." },
 ];
 
 export const articles: Article[] = [

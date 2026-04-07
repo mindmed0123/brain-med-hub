@@ -1,51 +1,79 @@
-import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { usePublishedPosts } from "@/hooks/usePosts";
+import { ArrowRight, Clock } from "lucide-react";
 
 const HeroSection = () => {
-  return (
-    <section id="inicio" className="relative overflow-hidden border-b border-border">
-      {/* Subtle grid pattern */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: `radial-gradient(circle at 1px 1px, hsl(var(--foreground)) 1px, transparent 0)`,
-        backgroundSize: '24px 24px'
-      }} />
+  const { data: posts } = usePublishedPosts();
+  const main = posts?.[0];
 
-      <div className="container relative mx-auto px-6 py-20 md:py-28 lg:py-36">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-6 inline-flex items-center rounded-full border border-border bg-muted/50 px-4 py-1.5">
-            <span className="font-sans text-xs font-medium text-muted-foreground">
-              Inteligência artificial para medicina
-            </span>
-          </div>
-
-          <h1 className="mb-6 font-sans text-4xl font-extrabold leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl">
-            O futuro da medicina está sendo{" "}
-            <span className="text-gradient">automatizado.</span>
+  if (!main) {
+    return (
+      <section id="inicio" className="border-b border-border py-20">
+        <div className="container mx-auto px-6 text-center">
+          <span className="mb-4 inline-block font-sans text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+            Centro de Inteligência
+          </span>
+          <h1 className="mb-4 font-serif text-4xl font-bold text-foreground md:text-5xl">
+            IA na medicina, explicada com dados.
           </h1>
-
-          <p className="mx-auto mb-10 max-w-xl font-sans text-lg leading-relaxed text-muted-foreground">
-            Descubra como a inteligência artificial está transformando a rotina médica. Dados reais, impacto financeiro e aplicação prática.
+          <p className="mx-auto max-w-xl font-sans text-lg text-muted-foreground">
+            Estudos reais. Impacto financeiro. O futuro da prática médica.
           </p>
-
-          <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href="https://mindmed.online"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl bg-foreground px-6 py-3 font-sans text-sm font-semibold text-background transition-all duration-200 hover:bg-foreground/90 hover:shadow-lg"
-            >
-              Conhecer a MindMed
-              <ArrowRight size={16} />
-            </a>
-            <a
-              href="https://mindmed.online"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-border px-6 py-3 font-sans text-sm font-semibold text-foreground transition-all duration-200 hover:bg-muted"
-            >
-              Testar gratuitamente
-            </a>
-          </div>
         </div>
+      </section>
+    );
+  }
+
+  return (
+    <section id="inicio" className="border-b border-border">
+      <div className="container mx-auto px-6 py-12 md:py-16">
+        <Link
+          to={`/artigo/${main.slug}`}
+          className="group grid items-center gap-10 md:grid-cols-2"
+        >
+          {main.cover_image && (
+            <div className="overflow-hidden rounded-xl shadow-lg transition-shadow duration-500 group-hover:shadow-xl">
+              <img
+                src={main.cover_image}
+                alt={main.title}
+                width={1200}
+                height={672}
+                className="aspect-[16/9] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              />
+            </div>
+          )}
+          <div>
+            <span className="mb-4 inline-block font-sans text-xs font-semibold uppercase tracking-[0.25em] text-primary">
+              Destaque
+            </span>
+            <h1 className="mb-4 font-serif text-3xl font-bold leading-tight text-foreground transition-colors duration-300 group-hover:text-primary md:text-4xl lg:text-[2.75rem]">
+              {main.title}
+            </h1>
+            <p className="mb-6 font-sans text-base leading-relaxed text-muted-foreground md:text-lg">
+              {main.subtitle}
+            </p>
+            <div className="flex items-center gap-5">
+              <span className="flex items-center gap-1.5 font-sans text-xs text-muted-foreground">
+                <Clock size={12} />
+                {main.read_time} min de leitura
+              </span>
+              <span className="text-xs text-border">|</span>
+              <span className="font-sans text-xs text-muted-foreground">
+                {new Date(main.created_at).toLocaleDateString("pt-BR", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}
+              </span>
+            </div>
+            <div className="mt-6">
+              <span className="inline-flex items-center gap-2 font-sans text-sm font-semibold text-primary transition-all duration-200 group-hover:gap-3">
+                Ler artigo completo
+                <ArrowRight size={14} />
+              </span>
+            </div>
+          </div>
+        </Link>
       </div>
     </section>
   );
