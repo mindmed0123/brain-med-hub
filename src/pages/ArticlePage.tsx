@@ -1,16 +1,24 @@
 import { useParams, Link } from "react-router-dom";
-import { articles } from "@/data/articles";
+import { usePost } from "@/hooks/usePosts";
 import BlogHeader from "@/components/blog/BlogHeader";
 import BlogFooter from "@/components/blog/BlogFooter";
 import ConversionBlock from "@/components/blog/ConversionBlock";
 import CTASection from "@/components/blog/CTASection";
-import { ArrowLeft, Clock, Calendar } from "lucide-react";
+import { ArrowLeft, Clock, Calendar, User } from "lucide-react";
 
 const ArticlePage = () => {
   const { slug } = useParams();
-  const article = articles.find((a) => a.slug === slug);
+  const { data: post, isLoading } = usePost(slug || "");
 
-  if (!article) {
+  if (isLoading) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background">
+        <p className="text-muted-foreground">Carregando artigo...</p>
+      </div>
+    );
+  }
+
+  if (!post) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="text-center">
@@ -21,7 +29,7 @@ const ArticlePage = () => {
     );
   }
 
-  const dateFormatted = new Date(article.date).toLocaleDateString("pt-BR", {
+  const dateFormatted = new Date(post.created_at).toLocaleDateString("pt-BR", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -45,63 +53,65 @@ const ArticlePage = () => {
             {/* Meta */}
             <div className="mb-4 flex flex-wrap items-center gap-3 font-sans text-xs text-muted-foreground">
               <span className="font-semibold uppercase tracking-widest text-primary">
-                {article.categoryIcon} {article.category.replace(/-/g, " ")}
+                {post.category.replace(/-/g, " ")}
               </span>
               <span>·</span>
               <span className="flex items-center gap-1">
                 <Clock size={12} />
-                {article.readTime} min de leitura
+                {post.read_time} min de leitura
               </span>
               <span>·</span>
               <span className="flex items-center gap-1">
                 <Calendar size={12} />
                 {dateFormatted}
               </span>
+              <span>·</span>
+              <span className="flex items-center gap-1">
+                <User size={12} />
+                {post.author}
+              </span>
             </div>
 
             <h1 className="mb-4 font-serif text-3xl font-bold leading-tight text-foreground md:text-4xl lg:text-5xl">
-              {article.title}
+              {post.title}
             </h1>
 
-            <p className="mb-8 font-sans text-lg text-muted-foreground">
-              {article.subtitle}
-            </p>
+            {post.subtitle && (
+              <p className="mb-8 font-sans text-lg text-muted-foreground">
+                {post.subtitle}
+              </p>
+            )}
 
             {/* Hero image */}
-            <div className="mb-10 overflow-hidden rounded-lg">
-              <img
-                src={article.image}
-                alt={article.title}
-                width={1200}
-                height={672}
-                className="aspect-[16/9] w-full object-cover"
-              />
-            </div>
+            {post.cover_image && (
+              <div className="mb-10 overflow-hidden rounded-lg">
+                <img
+                  src={post.cover_image}
+                  alt={post.title}
+                  className="aspect-[16/9] w-full object-cover"
+                />
+              </div>
+            )}
 
             {/* Highlight block */}
-            <div className="mb-10 rounded-lg border border-primary/20 bg-primary/5 p-8 text-center">
-              <p className="mb-1 font-sans text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                {article.highlight.label}
-              </p>
-              <p className="font-serif text-5xl font-extrabold text-primary md:text-6xl">
-                {article.highlight.value}
-              </p>
-            </div>
+            {post.highlight_label && post.highlight_value && (
+              <div className="mb-10 rounded-lg border border-primary/20 bg-primary/5 p-8 text-center">
+                <p className="mb-1 font-sans text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                  {post.highlight_label}
+                </p>
+                <p className="font-serif text-5xl font-extrabold text-primary md:text-6xl">
+                  {post.highlight_value}
+                </p>
+              </div>
+            )}
 
-            {/* Content sections */}
-            <div className="space-y-8">
-              {article.sections.map((section, i) => (
-                <div key={i}>
-                  <h2 className="mb-3 font-serif text-xl font-bold text-foreground md:text-2xl">
-                    {section.title}
-                  </h2>
-                  <p className="font-sans text-base leading-[1.8] text-muted-foreground">
-                    {section.content}
-                  </p>
-                  {i === 2 && <ConversionBlock />}
-                </div>
-              ))}
-            </div>
+            {/* Content */}
+            <div
+              className="prose prose-lg max-w-none font-sans text-muted-foreground [&_h1]:font-serif [&_h1]:text-foreground [&_h2]:font-serif [&_h2]:text-foreground [&_h3]:font-serif [&_h3]:text-foreground [&_strong]:text-foreground [&_a]:text-primary"
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
+
+            <ConversionBlock />
           </div>
         </div>
       </article>
