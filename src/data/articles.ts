@@ -133,7 +133,7 @@ export const articles: Article[] = [
     categoryIcon: "🚀",
     readTime: 10,
     date: "2026-03-10",
-    image: "",
+    image: articleHero5,
     featured: false,
     highlight: { label: "Redução reações adversas", value: "-40%" },
     sections: [
