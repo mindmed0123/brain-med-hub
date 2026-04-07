@@ -1,3 +1,9 @@
+import articleHero1 from "@/assets/article-hero-1.jpg";
+import articleHero2 from "@/assets/article-hero-2.jpg";
+import articleHero3 from "@/assets/article-hero-3.jpg";
+import articleHero4 from "@/assets/article-hero-4.jpg";
+import articleHero5 from "@/assets/article-hero-5.jpg";
+
 export interface Article {
   id: string;
   slug: string;
