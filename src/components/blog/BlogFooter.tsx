@@ -2,10 +2,14 @@ import { ArrowUpRight } from "lucide-react";
 import mindmedLogo from "@/assets/mindmed-logo.png";
 
 const BlogFooter = () => {
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-    else window.scrollTo({ top: 0, behavior: "smooth" });
+  const handleNav = (id: string) => {
+    if (window.location.pathname === "/") {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+      else window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      window.location.href = `/#${id}`;
+    }
   };
 
   return (
@@ -42,9 +46,9 @@ const BlogFooter = () => {
                 { label: "Categorias", id: "categorias" },
                 { label: "Sobre", id: "sobre" },
               ].map((link) => (
-                <li key={link.label}>
+                 <li key={link.label}>
                   <button
-                    onClick={() => scrollTo(link.id)}
+                    onClick={() => handleNav(link.id)}
                     className="font-sans text-sm text-muted-foreground transition-colors duration-200 hover:text-primary"
                   >
                     {link.label}

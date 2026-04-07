@@ -55,22 +55,22 @@ const ArticlePage = () => {
 
           <div className="mx-auto max-w-3xl">
             {/* Meta */}
-            <div className="mb-5 flex flex-wrap items-center gap-3 font-sans text-xs text-muted-foreground">
+            <div className="mb-5 flex flex-wrap items-center gap-x-3 gap-y-1.5 font-sans text-xs text-muted-foreground">
               <span className="font-semibold uppercase tracking-[0.2em] text-primary">
                 {post.category.replace(/-/g, " ")}
               </span>
-              <span className="text-border">·</span>
+              <span className="hidden text-border sm:inline">·</span>
               <span className="flex items-center gap-1">
                 <Clock size={12} />
-                {post.read_time} min de leitura
+                {post.read_time} min
               </span>
               <span className="text-border">·</span>
               <span className="flex items-center gap-1">
                 <Calendar size={12} />
                 {dateFormatted}
               </span>
-              <span className="text-border">·</span>
-              <span className="flex items-center gap-1">
+              <span className="hidden text-border sm:inline">·</span>
+              <span className="hidden items-center gap-1 sm:flex">
                 <User size={12} />
                 {post.author}
               </span>
