@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
-import { articles } from "@/data/articles";
+import { usePublishedPosts } from "@/hooks/usePosts";
 import { Clock } from "lucide-react";
 
 const FeaturedArticles = () => {
-  const featured = articles.filter((a) => a.featured).slice(0, 3);
+  const { data: posts } = usePublishedPosts();
+  const featured = posts?.filter((a) => a.featured).slice(0, 3) ?? [];
+
+  if (!featured.length) return null;
 
   return (
     <section id="artigos" className="border-b border-border py-16">
@@ -13,38 +16,34 @@ const FeaturedArticles = () => {
         </h2>
 
         <div className="grid gap-8 md:grid-cols-3">
-          {featured.map((article) => (
-            <Link
-              key={article.id}
-              to={`/artigo/${article.slug}`}
-              className="group"
-            >
-              <div className="mb-4 overflow-hidden rounded-lg">
-                <img
-                  src={article.image}
-                  alt={article.title}
-                  loading="lazy"
-                  width={1200}
-                  height={672}
-                  className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                />
-              </div>
+          {featured.map((post) => (
+            <Link key={post.id} to={`/artigo/${post.slug}`} className="group">
+              {post.cover_image && (
+                <div className="mb-4 overflow-hidden rounded-lg">
+                  <img
+                    src={post.cover_image}
+                    alt={post.title}
+                    loading="lazy"
+                    className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+              )}
 
               <span className="mb-2 inline-block font-sans text-xs font-semibold uppercase tracking-widest text-primary">
-                {article.categoryIcon} {article.category.replace(/-/g, " ")}
+                {post.category.replace(/-/g, " ")}
               </span>
 
               <h3 className="mb-2 font-serif text-lg font-bold leading-snug text-foreground transition-colors group-hover:text-primary">
-                {article.title}
+                {post.title}
               </h3>
 
               <p className="mb-3 font-sans text-sm leading-relaxed text-muted-foreground line-clamp-2">
-                {article.summary}
+                {post.subtitle}
               </p>
 
               <span className="flex items-center gap-1.5 font-sans text-xs text-muted-foreground">
                 <Clock size={12} />
-                {article.readTime} min de leitura
+                {post.read_time} min de leitura
               </span>
             </Link>
           ))}
