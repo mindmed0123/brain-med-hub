@@ -3,7 +3,6 @@ import HeroSection from "@/components/blog/HeroSection";
 import FeaturedArticles from "@/components/blog/FeaturedArticles";
 import CategoriesSection from "@/components/blog/CategoriesSection";
 import ArticleList from "@/components/blog/ArticleList";
-import CTASection from "@/components/blog/CTASection";
 import BlogFooter from "@/components/blog/BlogFooter";
 
 const Index = () => {
@@ -14,7 +13,6 @@ const Index = () => {
       <FeaturedArticles />
       <CategoriesSection />
       <ArticleList />
-      <CTASection />
       <BlogFooter />
     </div>
   );
