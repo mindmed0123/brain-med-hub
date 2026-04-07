@@ -67,7 +67,7 @@ export const articles: Article[] = [
     categoryIcon: "📊",
     readTime: 6,
     date: "2026-03-28",
-    image: "",
+    image: articleHero2,
     featured: true,
     highlight: { label: "Acurácia do algoritmo", value: "95.1%" },
     sections: [
@@ -89,7 +89,7 @@ export const articles: Article[] = [
     categoryIcon: "🧠",
     readTime: 7,
     date: "2026-03-20",
-    image: "",
+    image: articleHero3,
     featured: true,
     highlight: { label: "Redução no burnout", value: "-29%" },
     sections: [
@@ -111,7 +111,7 @@ export const articles: Article[] = [
     categoryIcon: "🏥",
     readTime: 9,
     date: "2026-03-15",
-    image: "",
+    image: articleHero4,
     featured: false,
     highlight: { label: "Redução de custos", value: "-22%" },
     sections: [
