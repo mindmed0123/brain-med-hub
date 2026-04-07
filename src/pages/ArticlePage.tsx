@@ -115,7 +115,7 @@ const ArticlePage = () => {
         </div>
       </article>
 
-      <CTASection />
+
       <BlogFooter />
     </div>
   );
