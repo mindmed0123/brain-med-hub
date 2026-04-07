@@ -6,55 +6,46 @@ const FeaturedArticles = () => {
   const featured = articles.filter((a) => a.featured).slice(0, 3);
 
   return (
-    <section id="artigos" className="py-24">
+    <section id="artigos" className="border-b border-border py-16">
       <div className="container mx-auto px-6">
-        <div className="mb-12">
-          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
-            Destaque
-          </p>
-          <h2 className="text-3xl font-bold text-foreground md:text-4xl">
-            Artigos principais
-          </h2>
-        </div>
+        <h2 className="mb-8 font-serif text-2xl font-bold text-foreground">
+          Artigos em destaque
+        </h2>
 
-        <div className="grid gap-6 md:grid-cols-3">
-          {featured.map((article, i) => (
+        <div className="grid gap-8 md:grid-cols-3">
+          {featured.map((article) => (
             <Link
               key={article.id}
               to={`/artigo/${article.slug}`}
-              className="group relative flex flex-col overflow-hidden rounded-2xl border border-border/50 bg-card transition-all duration-300 hover:border-primary/30 hover:glow-blue"
-              style={{ animationDelay: `${i * 0.15}s` }}
+              className="group"
             >
-              {/* Image placeholder */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="mb-4 overflow-hidden rounded-lg">
                 <img
                   src={article.image}
                   alt={article.title}
                   loading="lazy"
                   width={1200}
                   height={672}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
-                <div className="absolute bottom-3 left-3">
-                  <span className="rounded-full bg-background/80 px-3 py-1 text-xs font-medium text-primary backdrop-blur-sm">
-                    {article.categoryIcon} {article.category.replace("-", " ")}
-                  </span>
-                </div>
               </div>
 
-              <div className="flex flex-1 flex-col p-6">
-                <h3 className="mb-3 text-lg font-bold leading-tight text-foreground transition-colors group-hover:text-primary">
-                  {article.title}
-                </h3>
-                <p className="mb-4 flex-1 text-sm leading-relaxed text-muted-foreground">
-                  {article.summary}
-                </p>
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <Clock size={12} />
-                  {article.readTime} min de leitura
-                </div>
-              </div>
+              <span className="mb-2 inline-block font-sans text-xs font-semibold uppercase tracking-widest text-primary">
+                {article.categoryIcon} {article.category.replace(/-/g, " ")}
+              </span>
+
+              <h3 className="mb-2 font-serif text-lg font-bold leading-snug text-foreground transition-colors group-hover:text-primary">
+                {article.title}
+              </h3>
+
+              <p className="mb-3 font-sans text-sm leading-relaxed text-muted-foreground line-clamp-2">
+                {article.summary}
+              </p>
+
+              <span className="flex items-center gap-1.5 font-sans text-xs text-muted-foreground">
+                <Clock size={12} />
+                {article.readTime} min de leitura
+              </span>
             </Link>
           ))}
         </div>

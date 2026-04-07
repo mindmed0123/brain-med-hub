@@ -11,11 +11,8 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <BlogHeader />
       <HeroSection />
-      <div className="line-thin" />
       <FeaturedArticles />
-      <div className="line-thin" />
       <CategoriesSection />
-      <div className="line-thin" />
       <ArticleList />
       <CTASection />
       <BlogFooter />

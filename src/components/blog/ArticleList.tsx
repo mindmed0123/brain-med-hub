@@ -4,59 +4,61 @@ import { Clock, ArrowRight } from "lucide-react";
 
 const ArticleList = () => {
   return (
-    <section className="py-24">
+    <section className="py-16">
       <div className="container mx-auto px-6">
-        <div className="mb-12">
-          <p className="mb-2 text-sm font-medium uppercase tracking-widest text-primary">
-            Todos
-          </p>
-          <h2 className="text-3xl font-bold text-foreground md:text-4xl">
-            Artigos recentes
-          </h2>
-        </div>
+        <h2 className="mb-8 font-serif text-2xl font-bold text-foreground">
+          Todos os artigos
+        </h2>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="divide-y divide-border">
           {articles.map((article) => (
             <Link
               key={article.id}
               to={`/artigo/${article.slug}`}
-              className="group flex gap-5 rounded-2xl border border-border/50 bg-card p-5 transition-all duration-300 hover:border-primary/30"
+              className="group flex gap-6 py-6 first:pt-0 last:pb-0"
             >
-              <div className="hidden h-28 w-28 flex-shrink-0 overflow-hidden rounded-xl sm:block">
+              <div className="hidden h-24 w-36 flex-shrink-0 overflow-hidden rounded-lg sm:block">
                 <img
                   src={article.image}
                   alt={article.title}
                   loading="lazy"
-                  width={112}
-                  height={112}
-                  className="h-full w-full object-cover"
+                  width={144}
+                  height={96}
+                  className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               </div>
 
-              <div className="flex flex-1 flex-col justify-between">
-                <div>
-                  <div className="mb-2 flex items-center gap-2">
-                    <span className="text-xs text-primary">
-                      {article.categoryIcon}{" "}
-                      {article.category.replace("-", " ")}
-                    </span>
-                    <span className="text-xs text-muted-foreground">·</span>
-                    <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                      <Clock size={10} />
-                      {article.readTime} min
-                    </span>
-                  </div>
-                  <h3 className="mb-1.5 text-base font-bold leading-snug text-foreground transition-colors group-hover:text-primary">
-                    {article.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground line-clamp-2">
-                    {article.summary}
-                  </p>
+              <div className="flex flex-1 flex-col justify-center">
+                <div className="mb-1.5 flex items-center gap-3 font-sans text-xs text-muted-foreground">
+                  <span className="font-semibold uppercase tracking-widest text-primary">
+                    {article.categoryIcon} {article.category.replace(/-/g, " ")}
+                  </span>
+                  <span>·</span>
+                  <span className="flex items-center gap-1">
+                    <Clock size={11} />
+                    {article.readTime} min
+                  </span>
+                  <span>·</span>
+                  <span>
+                    {new Date(article.date).toLocaleDateString("pt-BR", {
+                      day: "numeric",
+                      month: "short",
+                      year: "numeric",
+                    })}
+                  </span>
                 </div>
 
-                <div className="mt-3 flex items-center gap-1 text-xs font-medium text-primary opacity-0 transition-opacity group-hover:opacity-100">
-                  Ler artigo <ArrowRight size={12} />
-                </div>
+                <h3 className="mb-1 font-serif text-base font-bold text-foreground transition-colors group-hover:text-primary md:text-lg">
+                  {article.title}
+                </h3>
+
+                <p className="hidden font-sans text-sm text-muted-foreground line-clamp-1 sm:block">
+                  {article.summary}
+                </p>
+              </div>
+
+              <div className="hidden items-center text-muted-foreground transition-colors group-hover:text-primary md:flex">
+                <ArrowRight size={16} />
               </div>
             </Link>
           ))}
