@@ -45,7 +45,7 @@ export const articles: Article[] = [
     categoryIcon: "💰",
     readTime: 8,
     date: "2026-04-01",
-    image: "",
+    image: articleHero1,
     featured: true,
     highlight: { label: "Aumento médio na receita", value: "+5.8%" },
     sections: [
