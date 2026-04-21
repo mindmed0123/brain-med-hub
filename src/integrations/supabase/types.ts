@@ -50,6 +50,7 @@ export type Database = {
           highlight_value: string | null
           id: string
           read_time: number
+          references: string | null
           slug: string
           status: string
           subtitle: string | null
@@ -67,6 +68,7 @@ export type Database = {
           highlight_value?: string | null
           id?: string
           read_time?: number
+          references?: string | null
           slug: string
           status?: string
           subtitle?: string | null
@@ -84,6 +86,7 @@ export type Database = {
           highlight_value?: string | null
           id?: string
           read_time?: number
+          references?: string | null
           slug?: string
           status?: string
           subtitle?: string | null
