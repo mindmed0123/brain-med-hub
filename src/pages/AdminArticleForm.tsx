@@ -55,6 +55,9 @@ export default function AdminArticleForm() {
       setHighlightLabel(existing.highlight_label || "");
       setHighlightValue(existing.highlight_value || "");
       setCoverImage(existing.cover_image || "");
+      setReferences(
+        (existing as unknown as { references?: string | null }).references || ""
+      );
     }
   }, [existing]);
 
@@ -94,7 +97,8 @@ export default function AdminArticleForm() {
       highlight_value: highlightValue || null,
       cover_image: coverImage || null,
       slug,
-    };
+      references: references || null,
+    } as Parameters<typeof createPost.mutateAsync>[0] & { references: string | null };
 
     try {
       if (isEdit && id) {
