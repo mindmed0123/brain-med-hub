@@ -5,6 +5,7 @@ import { categories } from "@/data/articles";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 import { ArrowLeft, Save, Upload, Image as ImageIcon } from "lucide-react";
 import { toast } from "sonner";
@@ -29,7 +30,7 @@ export default function AdminArticleForm() {
   const [title, setTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
   const [content, setContent] = useState("");
-  const [category, setCategory] = useState("ia-pratica");
+  const [category, setCategory] = useState("ia-medicina");
   const [author, setAuthor] = useState("MindMed");
   const [readTime, setReadTime] = useState(5);
   const [status, setStatus] = useState<"draft" | "published">("draft");
@@ -37,6 +38,7 @@ export default function AdminArticleForm() {
   const [highlightLabel, setHighlightLabel] = useState("");
   const [highlightValue, setHighlightValue] = useState("");
   const [coverImage, setCoverImage] = useState("");
+  const [references, setReferences] = useState("");
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
 
@@ -53,6 +55,9 @@ export default function AdminArticleForm() {
       setHighlightLabel(existing.highlight_label || "");
       setHighlightValue(existing.highlight_value || "");
       setCoverImage(existing.cover_image || "");
+      setReferences(
+        (existing as unknown as { references?: string | null }).references || ""
+      );
     }
   }, [existing]);
 
@@ -92,7 +97,8 @@ export default function AdminArticleForm() {
       highlight_value: highlightValue || null,
       cover_image: coverImage || null,
       slug,
-    };
+      references: references || null,
+    } as Parameters<typeof createPost.mutateAsync>[0] & { references: string | null };
 
     try {
       if (isEdit && id) {
@@ -269,6 +275,22 @@ export default function AdminArticleForm() {
             <div className="mt-2">
               <RichTextEditor content={content} onChange={setContent} />
             </div>
+          </div>
+
+          {/* Referências bibliográficas */}
+          <div>
+            <Label className="text-white/70">Referências bibliográficas</Label>
+            <p className="mb-2 mt-1 font-sans text-xs text-white/40">
+              Uma referência por linha (formato acadêmico). Aceita HTML para links.
+              Aparecem ao final do artigo numeradas.
+            </p>
+            <Textarea
+              value={references}
+              onChange={(e) => setReferences(e.target.value)}
+              rows={8}
+              className="border-white/10 bg-white/5 font-mono text-sm text-white placeholder:text-white/30"
+              placeholder={`Smith J, et al. AI in clinical practice. NEJM. 2024;390(12):1100-1110.\nWHO. Global strategy on digital health 2020-2025. Geneva: WHO; 2021.\nTopol E. Deep Medicine. Basic Books; 2019.`}
+            />
           </div>
 
           {/* Actions */}
