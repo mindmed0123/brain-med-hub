@@ -1,4 +1,3 @@
-import { ArrowUpRight } from "lucide-react";
 import mindmedLogo from "@/assets/mindmed-logo.png";
 
 const BlogFooter = () => {
@@ -13,43 +12,47 @@ const BlogFooter = () => {
   };
 
   return (
-    <footer className="border-t border-border bg-secondary/50 py-14">
-      <div className="container mx-auto px-6">
-        <div className="grid gap-10 md:grid-cols-4">
-          {/* Brand */}
-          <div className="md:col-span-2">
-            <div className="mb-4 flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center overflow-hidden rounded-md bg-foreground">
+    <footer className="border-t border-border bg-secondary/40 py-16">
+      <div className="container mx-auto max-w-6xl px-6">
+        <div className="grid gap-10 md:grid-cols-12">
+          {/* Identidade editorial */}
+          <div className="md:col-span-6">
+            <div className="mb-4 flex items-center gap-2.5">
+              <div className="flex h-7 w-7 items-center justify-center overflow-hidden rounded bg-foreground">
                 <img src={mindmedLogo} alt="MindMed" className="h-5 w-5 object-contain" />
               </div>
-              <span className="font-serif text-lg font-bold text-foreground">MindMed</span>
-              <span className="font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                Blog
+              <span className="font-serif text-base font-bold text-foreground">MindMed</span>
+              <span className="font-sans text-[10px] font-medium uppercase tracking-[0.25em] text-muted-foreground">
+                Publicação editorial
               </span>
             </div>
-            <p className="max-w-sm font-sans text-sm leading-relaxed text-muted-foreground">
-              O principal centro de inteligência sobre IA na medicina do Brasil.
-              Estudos reais, impacto financeiro e o futuro da prática médica.
+            <p className="max-w-md font-serif text-sm leading-relaxed text-muted-foreground">
+              Análises independentes sobre inteligência artificial, gestão clínica
+              e o futuro da prática médica baseada em evidência.
+            </p>
+            <p className="mt-6 max-w-md font-sans text-xs leading-relaxed text-muted-foreground/70">
+              Esta publicação é mantida pela MindMed. O conteúdo editorial é
+              independente e não reflete posicionamento comercial.
             </p>
           </div>
 
-          {/* Navigation */}
-          <div>
-            <h4 className="mb-4 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
-              Navegação
+          {/* Navegação */}
+          <div className="md:col-span-3">
+            <h4 className="mb-4 font-sans text-[11px] font-semibold uppercase tracking-[0.25em] text-foreground">
+              Seções
             </h4>
             <ul className="space-y-2.5">
               {[
                 { label: "Início", id: "inicio" },
                 { label: "Destaques", id: "destaques" },
-                { label: "Artigos", id: "artigos" },
-                { label: "Categorias", id: "categorias" },
+                { label: "Arquivo", id: "artigos" },
+                { label: "Áreas", id: "categorias" },
                 { label: "Sobre", id: "sobre" },
               ].map((link) => (
-                 <li key={link.label}>
+                <li key={link.label}>
                   <button
                     onClick={() => handleNav(link.id)}
-                    className="font-sans text-sm text-muted-foreground transition-colors duration-200 hover:text-primary"
+                    className="font-sans text-sm text-muted-foreground transition-colors duration-200 hover:text-foreground"
                   >
                     {link.label}
                   </button>
@@ -58,39 +61,25 @@ const BlogFooter = () => {
             </ul>
           </div>
 
-          {/* Social */}
-          <div>
-            <h4 className="mb-4 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-foreground">
-              Conecte-se
+          {/* Editorial */}
+          <div className="md:col-span-3">
+            <h4 className="mb-4 font-sans text-[11px] font-semibold uppercase tracking-[0.25em] text-foreground">
+              Editorial
             </h4>
-            <ul className="space-y-2.5">
-              {[
-                { name: "LinkedIn", href: "https://www.linkedin.com/in/pedro-suassuna-8a3626386" },
-                { name: "Instagram", href: "https://www.instagram.com/mindmed_ia/" },
-                { name: "Site oficial", href: "https://mindmed.online" },
-              ].map((social) => (
-                <li key={social.name}>
-                  <a
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 font-sans text-sm text-muted-foreground transition-colors duration-200 hover:text-primary"
-                  >
-                    {social.name}
-                    <ArrowUpRight size={12} />
-                  </a>
-                </li>
-              ))}
+            <ul className="space-y-2.5 font-sans text-sm text-muted-foreground">
+              <li>Conteúdo baseado em evidência</li>
+              <li>Fontes verificáveis</li>
+              <li>Acesso aberto</li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 sm:flex-row">
+        <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-border pt-6 sm:flex-row sm:items-center">
           <p className="font-sans text-xs text-muted-foreground">
             © {new Date().getFullYear()} MindMed. Todos os direitos reservados.
           </p>
           <p className="font-sans text-xs text-muted-foreground">
-            Feito com inteligência artificial e rigor científico.
+            ISSN editorial · Publicação digital independente
           </p>
         </div>
       </div>

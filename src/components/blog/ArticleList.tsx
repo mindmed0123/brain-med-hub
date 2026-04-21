@@ -1,23 +1,24 @@
 import { Link } from "react-router-dom";
 import { usePublishedPosts } from "@/hooks/usePosts";
-import { Clock, ArrowRight } from "lucide-react";
+import { categories } from "@/data/articles";
+import { Clock } from "lucide-react";
 
 const ArticleList = () => {
   const { data: posts, isLoading } = usePublishedPosts();
 
+  const categoryLabel = (id: string) =>
+    categories.find((c) => c.id === id)?.label ?? id.replace(/-/g, " ");
+
   if (isLoading) {
     return (
-      <section className="py-16">
-        <div className="container mx-auto px-6">
-          <div className="space-y-6">
+      <section className="py-20">
+        <div className="container mx-auto max-w-4xl px-6">
+          <div className="space-y-10">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="flex gap-6 animate-pulse">
-                <div className="hidden h-24 w-36 rounded-lg bg-muted sm:block" />
-                <div className="flex-1 space-y-3">
-                  <div className="h-3 w-32 rounded bg-muted" />
-                  <div className="h-5 w-3/4 rounded bg-muted" />
-                  <div className="h-3 w-1/2 rounded bg-muted" />
-                </div>
+              <div key={i} className="animate-pulse space-y-3 border-b border-border pb-10">
+                <div className="h-3 w-40 rounded bg-muted" />
+                <div className="h-6 w-3/4 rounded bg-muted" />
+                <div className="h-3 w-full rounded bg-muted" />
               </div>
             ))}
           </div>
@@ -29,67 +30,56 @@ const ArticleList = () => {
   if (!posts?.length) return null;
 
   return (
-    <section id="artigos" className="py-16 md:py-20">
-      <div className="container mx-auto px-6">
-        <div className="mb-10">
-          <span className="mb-2 block font-sans text-xs font-semibold uppercase tracking-[0.25em] text-primary">
-            Biblioteca
+    <section id="artigos" className="py-20 md:py-24">
+      <div className="container mx-auto max-w-4xl px-6">
+        <div className="mb-12">
+          <span className="mb-3 block font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-primary">
+            Arquivo
           </span>
-          <h2 className="font-serif text-2xl font-bold text-foreground md:text-3xl">
-            Todos os artigos
+          <h2 className="font-serif text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            Todos os artigos.
           </h2>
         </div>
 
-        <div className="divide-y divide-border">
+        <div className="divide-y divide-border border-t border-border">
           {posts.map((post) => (
             <Link
               key={post.id}
               to={`/artigo/${post.slug}`}
-              className="group flex gap-6 py-6 first:pt-0 last:pb-0"
+              className="group block py-10 transition-colors"
             >
-              {post.cover_image && (
-                <div className="hidden h-28 w-40 flex-shrink-0 overflow-hidden rounded-xl sm:block">
-                  <img
-                    src={post.cover_image}
-                    alt={post.title}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-              )}
+              <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1 font-sans text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+                <span className="font-semibold text-primary">
+                  {categoryLabel(post.category)}
+                </span>
+                <span className="text-border">·</span>
+                <span className="flex items-center gap-1">
+                  <Clock size={10} />
+                  {post.read_time} min
+                </span>
+                <span className="text-border">·</span>
+                <span>
+                  {new Date(post.created_at).toLocaleDateString("pt-BR", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                  })}
+                </span>
+              </div>
 
-              <div className="flex flex-1 flex-col justify-center">
-                <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 font-sans text-xs text-muted-foreground">
-                  <span className="font-semibold uppercase tracking-[0.15em] text-primary">
-                    {post.category.replace(/-/g, " ")}
-                  </span>
-                  <span className="hidden text-border sm:inline">·</span>
-                  <span className="flex items-center gap-1">
-                    <Clock size={11} />
-                    {post.read_time} min
-                  </span>
-                  <span className="hidden text-border sm:inline">·</span>
-                  <span className="hidden sm:inline">
-                    {new Date(post.created_at).toLocaleDateString("pt-BR", {
-                      day: "numeric",
-                      month: "short",
-                      year: "numeric",
-                    })}
-                  </span>
-                </div>
+              <h3 className="mb-3 font-serif text-2xl font-bold leading-tight tracking-tight text-foreground transition-colors duration-200 group-hover:text-primary md:text-3xl">
+                {post.title}
+              </h3>
 
-                <h3 className="mb-1.5 font-serif text-base font-bold text-foreground transition-colors duration-200 group-hover:text-primary md:text-lg">
-                  {post.title}
-                </h3>
-
-                <p className="hidden font-sans text-sm leading-relaxed text-muted-foreground line-clamp-1 sm:block">
+              {post.subtitle && (
+                <p className="font-serif text-base leading-relaxed text-muted-foreground md:text-lg">
                   {post.subtitle}
                 </p>
-              </div>
+              )}
 
-              <div className="hidden items-center text-muted-foreground transition-all duration-200 group-hover:text-primary group-hover:translate-x-1 md:flex">
-                <ArrowRight size={16} />
-              </div>
+              <p className="mt-4 font-sans text-xs text-muted-foreground/70">
+                Por <span className="text-foreground">{post.author}</span>
+              </p>
             </Link>
           ))}
         </div>
