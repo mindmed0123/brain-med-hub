@@ -5,6 +5,7 @@ import { categories } from "@/data/articles";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 import { ArrowLeft, Save, Upload, Image as ImageIcon } from "lucide-react";
 import { toast } from "sonner";
@@ -29,7 +30,7 @@ export default function AdminArticleForm() {
   const [title, setTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
   const [content, setContent] = useState("");
-  const [category, setCategory] = useState("ia-pratica");
+  const [category, setCategory] = useState("ia-medicina");
   const [author, setAuthor] = useState("MindMed");
   const [readTime, setReadTime] = useState(5);
   const [status, setStatus] = useState<"draft" | "published">("draft");
@@ -37,6 +38,7 @@ export default function AdminArticleForm() {
   const [highlightLabel, setHighlightLabel] = useState("");
   const [highlightValue, setHighlightValue] = useState("");
   const [coverImage, setCoverImage] = useState("");
+  const [references, setReferences] = useState("");
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
 
