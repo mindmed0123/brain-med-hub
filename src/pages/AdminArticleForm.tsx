@@ -277,6 +277,22 @@ export default function AdminArticleForm() {
             </div>
           </div>
 
+          {/* Referências bibliográficas */}
+          <div>
+            <Label className="text-white/70">Referências bibliográficas</Label>
+            <p className="mb-2 mt-1 font-sans text-xs text-white/40">
+              Uma referência por linha (formato acadêmico). Aceita HTML para links.
+              Aparecem ao final do artigo numeradas.
+            </p>
+            <Textarea
+              value={references}
+              onChange={(e) => setReferences(e.target.value)}
+              rows={8}
+              className="border-white/10 bg-white/5 font-mono text-sm text-white placeholder:text-white/30"
+              placeholder={`Smith J, et al. AI in clinical practice. NEJM. 2024;390(12):1100-1110.\nWHO. Global strategy on digital health 2020-2025. Geneva: WHO; 2021.\nTopol E. Deep Medicine. Basic Books; 2019.`}
+            />
+          </div>
+
           {/* Actions */}
           <div className="flex items-center justify-end gap-3 border-t border-white/10 pt-6">
             <Button
