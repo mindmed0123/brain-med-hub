@@ -51,11 +51,14 @@ export type Database = {
           id: string
           read_time: number
           references: string | null
+          shares: number
           slug: string
           status: string
           subtitle: string | null
           title: string
+          unique_readers: number
           updated_at: string
+          views: number
         }
         Insert: {
           author?: string
@@ -69,11 +72,14 @@ export type Database = {
           id?: string
           read_time?: number
           references?: string | null
+          shares?: number
           slug: string
           status?: string
           subtitle?: string | null
           title: string
+          unique_readers?: number
           updated_at?: string
+          views?: number
         }
         Update: {
           author?: string
@@ -87,11 +93,14 @@ export type Database = {
           id?: string
           read_time?: number
           references?: string | null
+          shares?: number
           slug?: string
           status?: string
           subtitle?: string | null
           title?: string
+          unique_readers?: number
           updated_at?: string
+          views?: number
         }
         Relationships: []
       }
@@ -100,7 +109,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      increment_post_metric: {
+        Args: { _metric: string; _slug: string }
+        Returns: undefined
+      }
     }
     Enums: {
       [_ in never]: never
