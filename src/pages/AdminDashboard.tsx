@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useAllPosts, useDeletePost } from "@/hooks/usePosts";
 import { Button } from "@/components/ui/button";
-import { Plus, Edit, Trash2, LogOut, Eye, EyeOff, Star } from "lucide-react";
+import { Plus, Edit, Trash2, LogOut, Eye, EyeOff, Star, Users, Share2, BarChart3 } from "lucide-react";
 
 export default function AdminDashboard() {
   const { user, signOut } = useAuth();
@@ -54,6 +54,38 @@ export default function AdminDashboard() {
           </Button>
         </div>
 
+        {/* Stats */}
+        {posts && posts.length > 0 && (() => {
+          const totals = posts.reduce(
+            (acc, p) => {
+              const x = p as typeof p & { views?: number; unique_readers?: number; shares?: number };
+              acc.views += x.views ?? 0;
+              acc.readers += x.unique_readers ?? 0;
+              acc.shares += x.shares ?? 0;
+              return acc;
+            },
+            { views: 0, readers: 0, shares: 0 },
+          );
+          const cards = [
+            { label: "Visualizações", value: totals.views, icon: BarChart3, color: "text-blue-400" },
+            { label: "Leitores únicos", value: totals.readers, icon: Users, color: "text-green-400" },
+            { label: "Compartilhamentos", value: totals.shares, icon: Share2, color: "text-purple-400" },
+          ];
+          return (
+            <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+              {cards.map((c) => (
+                <div key={c.label} className="rounded-xl border border-white/10 bg-[#111] p-5">
+                  <div className="flex items-center justify-between">
+                    <span className="font-sans text-xs uppercase tracking-wider text-white/40">{c.label}</span>
+                    <c.icon size={16} className={c.color} />
+                  </div>
+                  <p className="mt-3 font-serif text-3xl font-bold">{c.value.toLocaleString("pt-BR")}</p>
+                </div>
+              ))}
+            </div>
+          );
+        })()}
+
         {isLoading ? (
           <div className="py-20 text-center text-white/40">Carregando...</div>
         ) : !posts?.length ? (
@@ -71,7 +103,10 @@ export default function AdminDashboard() {
                   <th className="px-4 py-3 font-sans text-xs font-medium uppercase tracking-wider text-white/40">Título</th>
                   <th className="hidden px-4 py-3 font-sans text-xs font-medium uppercase tracking-wider text-white/40 md:table-cell">Categoria</th>
                   <th className="px-4 py-3 font-sans text-xs font-medium uppercase tracking-wider text-white/40">Status</th>
-                  <th className="px-4 py-3 font-sans text-xs font-medium uppercase tracking-wider text-white/40">Data</th>
+                  <th className="hidden px-4 py-3 text-right font-sans text-xs font-medium uppercase tracking-wider text-white/40 sm:table-cell">Views</th>
+                  <th className="hidden px-4 py-3 text-right font-sans text-xs font-medium uppercase tracking-wider text-white/40 sm:table-cell">Leitores</th>
+                  <th className="hidden px-4 py-3 text-right font-sans text-xs font-medium uppercase tracking-wider text-white/40 sm:table-cell">Shares</th>
+                  <th className="hidden px-4 py-3 font-sans text-xs font-medium uppercase tracking-wider text-white/40 lg:table-cell">Data</th>
                   <th className="px-4 py-3 text-right font-sans text-xs font-medium uppercase tracking-wider text-white/40">Ações</th>
                 </tr>
               </thead>
