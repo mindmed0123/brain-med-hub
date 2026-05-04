@@ -133,7 +133,17 @@ export default function AdminDashboard() {
                         </span>
                       )}
                     </td>
-                    <td className="px-4 py-3 font-sans text-xs text-white/40">
+                    {(() => {
+                      const m = post as typeof post & { views?: number; unique_readers?: number; shares?: number };
+                      return (
+                        <>
+                          <td className="hidden px-4 py-3 text-right font-sans text-xs text-white/70 sm:table-cell">{(m.views ?? 0).toLocaleString("pt-BR")}</td>
+                          <td className="hidden px-4 py-3 text-right font-sans text-xs text-white/70 sm:table-cell">{(m.unique_readers ?? 0).toLocaleString("pt-BR")}</td>
+                          <td className="hidden px-4 py-3 text-right font-sans text-xs text-white/70 sm:table-cell">{(m.shares ?? 0).toLocaleString("pt-BR")}</td>
+                        </>
+                      );
+                    })()}
+                    <td className="hidden px-4 py-3 font-sans text-xs text-white/40 lg:table-cell">
                       {new Date(post.created_at).toLocaleDateString("pt-BR")}
                     </td>
                     <td className="px-4 py-3 text-right">
