@@ -6,11 +6,14 @@ import BlogHeader from "@/components/blog/BlogHeader";
 import BlogFooter from "@/components/blog/BlogFooter";
 import ReadingProgress from "@/components/blog/ReadingProgress";
 import ReferencesBlock from "@/components/blog/ReferencesBlock";
+import ShareButton from "@/components/blog/ShareButton";
+import { useTrackArticleView } from "@/hooks/usePostMetrics";
 import { ArrowLeft, Clock, Calendar, User } from "lucide-react";
 
 const ArticlePage = () => {
   const { slug } = useParams();
   const { data: post, isLoading } = usePost(slug || "");
+  useTrackArticleView(post?.slug);
 
   if (isLoading) {
     return (
@@ -188,6 +191,7 @@ const ArticlePage = () => {
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
 
+            <ShareButton slug={post.slug} title={post.title} />
             <ReferencesBlock references={references} />
 
             <footer className="mt-16 border-t border-border pt-8">
