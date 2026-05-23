@@ -102,24 +102,24 @@ const ArticlePage = () => {
       <ReadingProgress />
       <BlogHeader />
 
-      <article className="py-14 md:py-20">
+      <article className="py-16 md:py-24">
         <div className="container mx-auto px-6">
           <Link
             to="/"
-            className="mb-12 inline-flex items-center gap-2 font-sans text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground transition-colors duration-200 hover:text-foreground"
+            className="mb-16 inline-flex items-center gap-2 font-sans text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground transition-colors duration-200 hover:text-foreground"
           >
             <ArrowLeft size={12} />
             Voltar ao arquivo
           </Link>
 
           <header className="mx-auto max-w-2xl">
-            <div className="mb-6">
+            <div className="mb-8">
               <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-primary">
                 {categoryLabel}
               </span>
             </div>
 
-            <h1 className="mb-6 font-serif text-3xl font-bold leading-[1.15] tracking-tight text-foreground md:text-5xl lg:text-[3.25rem]">
+            <h1 className="mb-6 font-serif text-3xl font-bold leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-[3.25rem]">
               {post.title}
             </h1>
 
@@ -145,21 +145,37 @@ const ArticlePage = () => {
                 {post.read_time} min de leitura
               </span>
             </div>
+            <div className="mt-8 flex items-center gap-4">
+              <div className="h-px flex-1 bg-border" />
+              <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-muted-foreground/50">
+                MindMed
+              </span>
+              <div className="h-px flex-1 bg-border" />
+            </div>
           </header>
 
           {post.cover_image && (
-            <figure className="mx-auto my-12 max-w-4xl">
-              <div className="overflow-hidden rounded-sm">
+            <figure className="mx-auto my-12 max-w-5xl">
+              <div className="overflow-hidden rounded-sm shadow-sm">
                 <img
                   src={post.cover_image}
                   alt={post.title}
-                  className="aspect-[16/9] w-full object-cover"
+                  className="aspect-[21/9] w-full object-cover"
+                  loading="eager"
                 />
               </div>
             </figure>
           )}
 
-          <div className="mx-auto max-w-2xl">
+          <div className="mx-auto max-w-5xl">
+            <div className="lg:grid lg:grid-cols-[200px_1fr] lg:gap-16 xl:grid-cols-[220px_1fr] xl:gap-20">
+              <aside className="hidden lg:block">
+                <div className="sticky top-28 pt-2">
+                  {!isHtml && <TableOfContents content={post.content} mode="sidebar" />}
+                </div>
+              </aside>
+
+              <div className="min-w-0 lg:max-w-[680px]">
             {post.highlight_label && post.highlight_value && (
               <aside
                 className="my-12 border-l-2 border-primary bg-secondary/40 p-8 text-center"
@@ -174,7 +190,11 @@ const ArticlePage = () => {
               </aside>
             )}
 
-            {!isHtml && <TableOfContents content={post.content} />}
+            {!isHtml && (
+              <div className="lg:hidden">
+                <TableOfContents content={post.content} mode="inline" />
+              </div>
+            )}
 
             <div
               className="
@@ -251,6 +271,8 @@ const ArticlePage = () => {
                 Voltar ao arquivo editorial
               </Link>
             </footer>
+              </div>
+            </div>
           </div>
         </div>
       </article>

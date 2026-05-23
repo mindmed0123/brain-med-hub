@@ -8,6 +8,7 @@ interface TocItem {
 
 interface TableOfContentsProps {
   content: string;
+  mode?: "inline" | "sidebar";
 }
 
 export const slugifyHeading = (text: string) =>
@@ -21,7 +22,7 @@ export const slugifyHeading = (text: string) =>
     .replace(/^-+|-+$/g, "")
     .trim();
 
-const TableOfContents = ({ content }: TableOfContentsProps) => {
+const TableOfContents = ({ content, mode = "inline" }: TableOfContentsProps) => {
   const [items, setItems] = useState<TocItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
 
@@ -56,6 +57,44 @@ const TableOfContents = ({ content }: TableOfContentsProps) => {
 
   if (items.length < 3) return null;
 
+  const handleClick = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      window.scrollTo({
+        top: el.getBoundingClientRect().top + window.scrollY - 80,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  if (mode === "sidebar") {
+    return (
+      <nav aria-label="Índice do artigo">
+        <p className="mb-4 font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground/70">
+          Neste artigo
+        </p>
+        <ol className="space-y-1">
+          {items.map((item) => (
+            <li key={item.id} style={{ paddingLeft: item.level === 3 ? "0.75rem" : "0" }}>
+              <a
+                href={`#${item.id}`}
+                onClick={(e) => handleClick(e, item.id)}
+                className={`block border-l-2 py-1 pl-3 font-sans text-[12px] leading-snug transition-all duration-200 ${
+                  activeId === item.id
+                    ? "border-primary font-semibold text-foreground"
+                    : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"
+                }`}
+              >
+                {item.text}
+              </a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    );
+  }
+
   return (
     <nav
       aria-label="Sumário do artigo"
@@ -66,22 +105,10 @@ const TableOfContents = ({ content }: TableOfContentsProps) => {
       </p>
       <ol className="space-y-2">
         {items.map((item) => (
-          <li
-            key={item.id}
-            className={item.level === 3 ? "pl-4" : ""}
-          >
+          <li key={item.id} className={item.level === 3 ? "pl-4" : ""}>
             <a
               href={`#${item.id}`}
-              onClick={(e) => {
-                e.preventDefault();
-                const el = document.getElementById(item.id);
-                if (el) {
-                  window.scrollTo({
-                    top: el.getBoundingClientRect().top + window.scrollY - 80,
-                    behavior: "smooth",
-                  });
-                }
-              }}
+              onClick={(e) => handleClick(e, item.id)}
               className={`block border-l-2 pl-3 font-sans text-sm leading-snug transition-colors ${
                 activeId === item.id
                   ? "border-primary text-foreground"
