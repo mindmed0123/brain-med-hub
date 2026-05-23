@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Share2, Check, Linkedin, Twitter, Link as LinkIcon } from "lucide-react";
+import { Share2, Check, Linkedin, Twitter, Link as LinkIcon, MessageCircle } from "lucide-react";
 import { trackMetric } from "@/hooks/usePostMetrics";
 import { Button } from "@/components/ui/button";
 
