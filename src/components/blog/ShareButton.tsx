@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Share2, Check, Linkedin, Twitter, Link as LinkIcon } from "lucide-react";
+import { Share2, Check, Linkedin, Twitter, Link as LinkIcon, MessageCircle } from "lucide-react";
 import { trackMetric } from "@/hooks/usePostMetrics";
 import { Button } from "@/components/ui/button";
 
@@ -12,8 +12,17 @@ export default function ShareButton({ slug, title }: Props) {
   const [copied, setCopied] = useState(false);
   const url = typeof window !== "undefined" ? window.location.href : "";
 
-  const handleShare = async (channel: "copy" | "linkedin" | "twitter" | "native") => {
+  const handleShare = async (channel: "copy" | "linkedin" | "twitter" | "whatsapp" | "native") => {
     trackMetric(slug, "shares");
+
+    if (channel === "whatsapp") {
+      window.open(
+        `https://wa.me/?text=${encodeURIComponent(title + "\n\n" + url)}`,
+        "_blank",
+        "noopener,noreferrer",
+      );
+      return;
+    }
 
     if (channel === "copy") {
       await navigator.clipboard.writeText(url);
@@ -47,6 +56,14 @@ export default function ShareButton({ slug, title }: Props) {
         <Share2 size={12} className="mr-2 inline" />
         Compartilhar
       </span>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => handleShare("whatsapp")}
+        className="gap-2 hover:bg-[#25D366] hover:text-white hover:border-[#25D366]"
+      >
+        <MessageCircle size={14} /> WhatsApp
+      </Button>
       <Button variant="outline" size="sm" onClick={() => handleShare("linkedin")} className="gap-2">
         <Linkedin size={14} /> LinkedIn
       </Button>
