@@ -271,6 +271,8 @@ const ArticlePage = () => {
                 Voltar ao arquivo editorial
               </Link>
             </footer>
+              </div>
+            </div>
           </div>
         </div>
       </article>
