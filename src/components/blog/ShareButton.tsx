@@ -56,6 +56,14 @@ export default function ShareButton({ slug, title }: Props) {
         <Share2 size={12} className="mr-2 inline" />
         Compartilhar
       </span>
+      <Button
+        variant="outline"
+        size="sm"
+        onClick={() => handleShare("whatsapp")}
+        className="gap-2 hover:bg-[#25D366] hover:text-white hover:border-[#25D366]"
+      >
+        <MessageCircle size={14} /> WhatsApp
+      </Button>
       <Button variant="outline" size="sm" onClick={() => handleShare("linkedin")} className="gap-2">
         <Linkedin size={14} /> LinkedIn
       </Button>
