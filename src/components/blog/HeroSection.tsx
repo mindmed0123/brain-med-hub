@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { usePublishedPosts } from "@/hooks/usePosts";
 import { categories } from "@/data/articles";
 import { ArrowRight, Clock } from "lucide-react";
+import NewsletterBlock from "./NewsletterBlock";
 
 const HeroSection = () => {
   const { data: posts } = usePublishedPosts();
@@ -12,7 +13,7 @@ const HeroSection = () => {
 
   if (!main) {
     return (
-      <section id="inicio" className="border-b border-border py-24 md:py-32">
+      <section id="inicio" className="border-b border-border py-16 md:py-20">
         <div className="container mx-auto max-w-4xl px-6 text-center">
           <span className="mb-5 inline-block font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-primary">
             Publicação editorial
@@ -20,10 +21,13 @@ const HeroSection = () => {
           <h1 className="mb-6 font-serif text-4xl font-bold leading-[1.1] tracking-tight text-foreground md:text-6xl">
             Medicina, evidência e o futuro da prática clínica.
           </h1>
-          <p className="mx-auto max-w-2xl font-serif text-lg leading-relaxed text-muted-foreground md:text-xl">
+          <p className="mx-auto mb-8 max-w-2xl font-serif text-lg leading-relaxed text-muted-foreground md:text-xl">
             Análises aprofundadas sobre inteligência artificial, gestão clínica
             e transformação tecnológica na medicina contemporânea.
           </p>
+          <div className="mx-auto flex max-w-md justify-center">
+            <NewsletterBlock variant="hero" />
+          </div>
         </div>
       </section>
     );
@@ -31,7 +35,7 @@ const HeroSection = () => {
 
   return (
     <section id="inicio" className="border-b border-border">
-      <div className="container mx-auto max-w-6xl px-6 py-16 md:py-24">
+      <div className="container mx-auto max-w-6xl px-6 py-12 md:py-16">
         <Link
           to={`/artigo/${main.slug}`}
           className="group grid items-center gap-12 md:grid-cols-12"
@@ -83,6 +87,9 @@ const HeroSection = () => {
             </div>
           </div>
         </Link>
+        <div className="mt-12 flex justify-center border-t border-border pt-10">
+          <NewsletterBlock variant="hero" />
+        </div>
       </div>
     </section>
   );
