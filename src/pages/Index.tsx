@@ -3,10 +3,12 @@ import { useLocation } from "react-router-dom";
 import BlogHeader from "@/components/blog/BlogHeader";
 import HeroSection from "@/components/blog/HeroSection";
 import FeaturedArticles from "@/components/blog/FeaturedArticles";
+import PopularPosts from "@/components/blog/PopularPosts";
 import CategoriesSection from "@/components/blog/CategoriesSection";
 import ArticleList from "@/components/blog/ArticleList";
 import AboutSection from "@/components/blog/AboutSection";
 import BlogFooter from "@/components/blog/BlogFooter";
+import BackToTop from "@/components/blog/BackToTop";
 
 const Index = () => {
   const { hash } = useLocation();
@@ -26,10 +28,12 @@ const Index = () => {
       <BlogHeader />
       <HeroSection />
       <FeaturedArticles />
+      <PopularPosts />
       <CategoriesSection />
       <ArticleList />
       <AboutSection />
       <BlogFooter />
+      <BackToTop />
     </div>
   );
 };

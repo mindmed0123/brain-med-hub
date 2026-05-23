@@ -1,5 +1,8 @@
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import { usePost } from "@/hooks/usePosts";
 import { categories } from "@/data/articles";
 import BlogHeader from "@/components/blog/BlogHeader";
@@ -7,6 +10,10 @@ import BlogFooter from "@/components/blog/BlogFooter";
 import ReadingProgress from "@/components/blog/ReadingProgress";
 import ReferencesBlock from "@/components/blog/ReferencesBlock";
 import ShareButton from "@/components/blog/ShareButton";
+import NewsletterBlock from "@/components/blog/NewsletterBlock";
+import RelatedArticles from "@/components/blog/RelatedArticles";
+import TableOfContents, { slugifyHeading } from "@/components/blog/TableOfContents";
+import BackToTop from "@/components/blog/BackToTop";
 import { useTrackArticleView } from "@/hooks/usePostMetrics";
 import { ArrowLeft, Clock, Calendar, User } from "lucide-react";
 
@@ -53,7 +60,6 @@ const ArticlePage = () => {
   const description = post.subtitle ?? post.title;
   const canonical = `https://blog.mindmed.online/artigo/${post.slug}`;
 
-  // JSON-LD Article schema
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -63,16 +69,17 @@ const ArticlePage = () => {
     datePublished: post.created_at,
     dateModified: post.updated_at,
     author: { "@type": "Person", name: post.author },
-    publisher: {
-      "@type": "Organization",
-      name: "MindMed",
-    },
+    publisher: { "@type": "Organization", name: "MindMed" },
     mainEntityOfPage: canonical,
     articleSection: categoryLabel,
   };
 
-  // Acesso seguro a "references" (campo recém-adicionado, ainda fora do tipo gerado)
   const references = (post as unknown as { references?: string | null }).references ?? null;
+
+  // Detect markdown vs HTML content. If content starts with an HTML tag, render
+  // raw HTML (legacy TipTap output). Otherwise treat as Markdown (supports GFM
+  // tables, etc.).
+  const isHtml = /^\s*<(?:p|h[1-6]|ul|ol|blockquote|table|div|figure|img)/i.test(post.content);
 
   return (
     <div className="min-h-screen bg-background">
@@ -140,7 +147,6 @@ const ArticlePage = () => {
             </div>
           </header>
 
-          {/* Hero image */}
           {post.cover_image && (
             <figure className="mx-auto my-12 max-w-4xl">
               <div className="overflow-hidden rounded-sm">
@@ -154,7 +160,6 @@ const ArticlePage = () => {
           )}
 
           <div className="mx-auto max-w-2xl">
-            {/* Highlight block (data crítica) */}
             {post.highlight_label && post.highlight_value && (
               <aside
                 className="my-12 border-l-2 border-primary bg-secondary/40 p-8 text-center"
@@ -169,15 +174,15 @@ const ArticlePage = () => {
               </aside>
             )}
 
-            {/* Conteúdo editorial */}
+            {!isHtml && <TableOfContents content={post.content} />}
+
             <div
               className="
                 article-content
                 prose prose-lg max-w-none
                 font-serif text-[1.0625rem] leading-[1.75] text-foreground/90
-                [&_h1]:font-serif [&_h1]:text-foreground [&_h1]:tracking-tight
-                [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-foreground
-                [&_h3]:mt-10 [&_h3]:mb-3 [&_h3]:font-serif [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-foreground
+                [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:scroll-mt-24 [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-foreground
+                [&_h3]:mt-10 [&_h3]:mb-3 [&_h3]:scroll-mt-24 [&_h3]:font-serif [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-foreground
                 [&_p]:my-5 [&_p]:text-foreground/85
                 [&_strong]:font-semibold [&_strong]:text-foreground
                 [&_a]:text-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-primary/40 hover:[&_a]:decoration-primary
@@ -187,12 +192,52 @@ const ArticlePage = () => {
                 [&_li]:my-2
                 [&_img]:my-8 [&_img]:rounded-sm
                 [&_code]:rounded [&_code]:bg-muted [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-sm
+                [&_table]:my-8 [&_table]:w-full [&_table]:border-collapse [&_table]:overflow-hidden [&_table]:rounded-sm [&_table]:border [&_table]:border-border [&_table]:font-sans [&_table]:text-sm
+                [&_thead]:bg-secondary/60
+                [&_th]:border [&_th]:border-border [&_th]:px-4 [&_th]:py-3 [&_th]:text-left [&_th]:font-semibold [&_th]:text-foreground
+                [&_td]:border [&_td]:border-border [&_td]:px-4 [&_td]:py-3 [&_td]:text-foreground/85
+                [&_tbody_tr:nth-child(even)]:bg-secondary/20
+                [&_hr]:my-10 [&_hr]:border-border
               "
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
+            >
+              {isHtml ? (
+                <div dangerouslySetInnerHTML={{ __html: post.content }} />
+              ) : (
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeRaw]}
+                  components={{
+                    h2: ({ children, ...props }) => {
+                      const text = String(children);
+                      const id = slugifyHeading(text);
+                      return (
+                        <h2 id={id} {...props}>
+                          {children}
+                        </h2>
+                      );
+                    },
+                    h3: ({ children, ...props }) => {
+                      const text = String(children);
+                      const id = slugifyHeading(text);
+                      return (
+                        <h3 id={id} {...props}>
+                          {children}
+                        </h3>
+                      );
+                    },
+                  }}
+                >
+                  {post.content}
+                </ReactMarkdown>
+              )}
+            </div>
+
+            <NewsletterBlock variant="inline" />
 
             <ShareButton slug={post.slug} title={post.title} />
             <ReferencesBlock references={references} />
+
+            <RelatedArticles currentSlug={post.slug} currentCategory={post.category} />
 
             <footer className="mt-16 border-t border-border pt-8">
               <p className="font-sans text-xs uppercase tracking-[0.2em] text-muted-foreground">
@@ -211,6 +256,7 @@ const ArticlePage = () => {
       </article>
 
       <BlogFooter />
+      <BackToTop />
     </div>
   );
 };
