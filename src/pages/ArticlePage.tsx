@@ -167,7 +167,15 @@ const ArticlePage = () => {
             </figure>
           )}
 
-          <div className="mx-auto max-w-2xl">
+          <div className="mx-auto max-w-5xl">
+            <div className="lg:grid lg:grid-cols-[200px_1fr] lg:gap-16 xl:grid-cols-[220px_1fr] xl:gap-20">
+              <aside className="hidden lg:block">
+                <div className="sticky top-28 pt-2">
+                  {!isHtml && <TableOfContents content={post.content} mode="sidebar" />}
+                </div>
+              </aside>
+
+              <div className="min-w-0 lg:max-w-[680px]">
             {post.highlight_label && post.highlight_value && (
               <aside
                 className="my-12 border-l-2 border-primary bg-secondary/40 p-8 text-center"
@@ -182,7 +190,11 @@ const ArticlePage = () => {
               </aside>
             )}
 
-            {!isHtml && <TableOfContents content={post.content} />}
+            {!isHtml && (
+              <div className="lg:hidden">
+                <TableOfContents content={post.content} mode="inline" />
+              </div>
+            )}
 
             <div
               className="
