@@ -3,9 +3,14 @@ import StarterKit from "@tiptap/starter-kit";
 import Link from "@tiptap/extension-link";
 import Image from "@tiptap/extension-image";
 import Placeholder from "@tiptap/extension-placeholder";
+import Table from "@tiptap/extension-table";
+import TableRow from "@tiptap/extension-table-row";
+import TableHeader from "@tiptap/extension-table-header";
+import TableCell from "@tiptap/extension-table-cell";
 import {
   Bold, Italic, List, ListOrdered, Heading1, Heading2, Heading3,
   Quote, Minus, Link as LinkIcon, Image as ImageIcon, Undo, Redo,
+  Table as TableIcon,
 } from "lucide-react";
 
 interface Props {
@@ -37,6 +42,10 @@ export default function RichTextEditor({ content, onChange }: Props) {
       Link.configure({ openOnClick: false }),
       Image,
       Placeholder.configure({ placeholder: "Comece a escrever seu artigo..." }),
+      Table.configure({ resizable: true }),
+      TableRow,
+      TableHeader,
+      TableCell,
     ],
     content,
     onUpdate: ({ editor }) => onChange(editor.getHTML()),
@@ -98,6 +107,14 @@ export default function RichTextEditor({ content, onChange }: Props) {
         </MenuButton>
         <MenuButton onClick={addImage} title="Imagem">
           <ImageIcon size={16} />
+        </MenuButton>
+        <MenuButton
+          onClick={() =>
+            editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()
+          }
+          title="Inserir tabela"
+        >
+          <TableIcon size={16} />
         </MenuButton>
         <div className="mx-1 w-px bg-border" />
         <MenuButton onClick={() => editor.chain().focus().undo().run()} title="Desfazer">
