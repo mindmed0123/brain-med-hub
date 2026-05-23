@@ -12,8 +12,17 @@ export default function ShareButton({ slug, title }: Props) {
   const [copied, setCopied] = useState(false);
   const url = typeof window !== "undefined" ? window.location.href : "";
 
-  const handleShare = async (channel: "copy" | "linkedin" | "twitter" | "native") => {
+  const handleShare = async (channel: "copy" | "linkedin" | "twitter" | "whatsapp" | "native") => {
     trackMetric(slug, "shares");
+
+    if (channel === "whatsapp") {
+      window.open(
+        `https://wa.me/?text=${encodeURIComponent(title + "\n\n" + url)}`,
+        "_blank",
+        "noopener,noreferrer",
+      );
+      return;
+    }
 
     if (channel === "copy") {
       await navigator.clipboard.writeText(url);
