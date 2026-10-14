@@ -54,7 +54,7 @@ const FeaturedArticles = () => {
               </h3>
 
               {post.subtitle && (
-                <p className="mb-5 flex-1 font-sans text-base leading-relaxed text-muted-foreground line-clamp-3">
+                <p className="mb-5 flex-1 font-sans text-base leading-relaxed text-muted-foreground line-clamp-2">
                   {post.subtitle}
                 </p>
               )}

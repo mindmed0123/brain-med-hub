@@ -78,7 +78,7 @@ const ArticleList = () => {
               </h3>
 
               {post.subtitle && (
-                <p className="mb-4 line-clamp-3 font-sans text-base leading-relaxed text-muted-foreground">
+                <p className="mb-4 line-clamp-2 font-sans text-base leading-relaxed text-muted-foreground">
                   {post.subtitle}
                 </p>
               )}

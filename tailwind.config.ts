@@ -7,18 +7,27 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: { DEFAULT: "20px", md: "32px" },
       screens: {
         "2xl": "1200px",
       },
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-        serif: ['Source Serif 4', 'Georgia', 'Times New Roman', 'serif'],
+        sans: ['"Inter Tight"', 'system-ui', 'sans-serif'],
+        serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+        display: ['"Instrument Serif"', 'Georgia', 'serif'],
+        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+        body: ['"Source Serif 4"', 'Georgia', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
+        ink: "hsl(var(--ink))",
+        night: "hsl(var(--night))",
+        paper: "hsl(var(--paper))",
+        brand: { DEFAULT: "hsl(var(--brand))", dark: "hsl(var(--brand-dark))", light: "hsl(var(--brand-light))" },
+        sand: "hsl(var(--sand))",
+        "gray-dark": "hsl(var(--gray-on-dark))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",

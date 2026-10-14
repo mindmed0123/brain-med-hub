@@ -82,7 +82,7 @@ const ArticlePage = () => {
   const isHtml = /^\s*<(?:p|h[1-6]|ul|ol|blockquote|table|div|figure|img)/i.test(post.content);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-card">
       <Helmet>
         <title>{`${post.title} — MindMed`}</title>
         <meta name="description" content={description.slice(0, 158)} />
