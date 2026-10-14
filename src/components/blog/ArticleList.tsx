@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { usePublishedPosts } from "@/hooks/usePosts";
 import { categories } from "@/data/articles";
 import { Clock } from "lucide-react";
+import CoverFallback from "./CoverFallback";
 
 const ArticleList = () => {
   const { data: posts, isLoading } = usePublishedPosts();
@@ -46,10 +47,10 @@ const ArticleList = () => {
             <Link
               key={post.id}
               to={`/artigo/${post.slug}`}
-              className="group flex flex-col"
+              className="group flex flex-col rounded-2xl border border-border bg-card p-4"
             >
               {post.cover_image ? (
-                <div className="mb-5 overflow-hidden rounded-sm">
+                <div className="mb-5 overflow-hidden rounded-2xl bg-border">
                   <img
                     src={post.cover_image}
                     alt={post.title}
@@ -58,7 +59,7 @@ const ArticleList = () => {
                   />
                 </div>
               ) : (
-                <div className="mb-5 aspect-[16/10] w-full rounded-sm bg-secondary/40" />
+                <div className="mb-5"><CoverFallback category={categoryLabel(post.category)} /></div>
               )}
 
               <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">

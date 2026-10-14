@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import mindmedLogo from "@/assets/mindmed-logo.png";
 
 const BlogHeader = () => {
   const [mobileOpen, setMobileOpen] = useState(false);

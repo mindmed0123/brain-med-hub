@@ -1,5 +1,4 @@
 import { Linkedin, Instagram, Twitter, Mail } from "lucide-react";
-import mindmedLogo from "@/assets/mindmed-logo.png";
 import NewsletterBlock from "./NewsletterBlock";
 
 const BlogFooter = () => {
@@ -20,10 +19,7 @@ const BlogFooter = () => {
           {/* Sobre */}
           <div className="md:col-span-5">
             <div className="mb-4 flex items-center gap-2.5">
-              <div className="flex h-7 w-7 items-center justify-center overflow-hidden rounded bg-foreground">
-                <img src={mindmedLogo} alt="MindMed" className="h-5 w-5 object-contain" />
-              </div>
-              <span className="font-serif text-base font-normal text-foreground">MindMed</span>
+              <span className="font-serif text-[30px] leading-none text-foreground">O Prontuário</span>
               <span className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
                 Publicação editorial
               </span>
