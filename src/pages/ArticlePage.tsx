@@ -200,9 +200,9 @@ const ArticlePage = () => {
               className="
                 article-content
                 prose prose-lg max-w-none
-                font-serif text-[1.0625rem] leading-[1.75] text-foreground/90
-                [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:scroll-mt-24 [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-foreground
-                [&_h3]:mt-10 [&_h3]:mb-3 [&_h3]:scroll-mt-24 [&_h3]:font-serif [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-foreground
+                font-body text-[1.0625rem] leading-[1.75] text-foreground/90
+                [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:scroll-mt-24 [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:font-normal [&_h2]:tracking-tight [&_h2]:text-foreground
+                [&_h3]:mt-10 [&_h3]:mb-3 [&_h3]:scroll-mt-24 [&_h3]:font-serif [&_h3]:text-xl [&_h3]:font-normal [&_h3]:text-foreground
                 [&_p]:my-5 [&_p]:text-foreground/85
                 [&_strong]:font-semibold [&_strong]:text-foreground
                 [&_a]:text-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-primary/40 hover:[&_a]:decoration-primary

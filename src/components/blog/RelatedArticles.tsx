@@ -54,7 +54,7 @@ const RelatedArticles = ({ currentSlug, currentCategory }: RelatedArticlesProps)
             <span className="mb-2 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
               {catLabel(article.category)}
             </span>
-            <h4 className="mb-3 font-serif text-lg font-normal leading-snug tracking-tight text-foreground transition-colors duration-200 group-hover:text-primary">
+            <h4 className="mb-3 font-sans text-[22px] font-bold leading-[1.15] tracking-[-0.02em] text-foreground underline-offset-4 group-hover:underline md:text-[24px]">
               {article.title}
             </h4>
             <span className="mt-auto flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">

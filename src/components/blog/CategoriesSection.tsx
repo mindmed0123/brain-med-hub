@@ -8,7 +8,7 @@ const CategoriesSection = () => {
           <span className="mb-3 block font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
             Áreas editoriais
           </span>
-          <h2 className="font-serif text-3xl font-normal tracking-tight text-foreground md:text-4xl">
+          <h2 className="font-serif text-[34px] font-normal leading-[1.05] tracking-tight text-foreground md:text-[44px]">
             Linhas de pesquisa.
           </h2>
         </div>

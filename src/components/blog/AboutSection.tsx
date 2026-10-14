@@ -5,10 +5,10 @@ const AboutSection = () => {
         <span className="mb-5 block font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
           Sobre a publicação
         </span>
-        <h2 className="mb-8 font-serif text-3xl font-normal leading-tight tracking-tight text-foreground md:text-4xl">
+        <h2 className="mb-8 font-serif text-[34px] font-normal leading-[1.05] tracking-tight text-foreground md:text-[44px]">
           Conteúdo médico independente, baseado em evidência.
         </h2>
-        <div className="space-y-5 font-serif text-lg leading-relaxed text-muted-foreground">
+        <div className="space-y-5 font-sans text-lg leading-relaxed text-muted-foreground">
           <p>
             Esta publicação reúne análises sobre inteligência artificial,
             gestão clínica, educação médica e tecnologia hospitalar. O objetivo

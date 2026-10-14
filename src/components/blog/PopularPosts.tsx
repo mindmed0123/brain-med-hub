@@ -37,7 +37,7 @@ const PopularPosts = () => {
           <span className="mb-3 block font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
             Mais lidos
           </span>
-          <h2 className="font-serif text-3xl font-normal tracking-tight text-foreground md:text-4xl">
+          <h2 className="font-serif text-[34px] font-normal leading-[1.05] tracking-tight text-foreground md:text-[44px]">
             O que está sendo lido.
           </h2>
         </div>
@@ -56,7 +56,7 @@ const PopularPosts = () => {
                   <span className="mb-2 block font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
                     {catLabel(post.category)}
                   </span>
-                  <h3 className="font-serif text-lg font-normal leading-snug tracking-tight text-foreground transition-colors group-hover:text-primary md:text-xl">
+                  <h3 className="font-sans text-[22px] font-bold leading-[1.15] tracking-[-0.02em] text-foreground underline-offset-4 group-hover:underline md:text-[24px]">
                     {post.title}
                   </h3>
                 </div>

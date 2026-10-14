@@ -36,7 +36,7 @@ const ArticleList = () => {
           <span className="mb-3 block font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
             Arquivo
           </span>
-          <h2 className="font-serif text-3xl font-normal tracking-tight text-foreground md:text-4xl">
+          <h2 className="font-serif text-[34px] font-normal leading-[1.05] tracking-tight text-foreground md:text-[44px]">
             Todos os artigos.
           </h2>
         </div>
@@ -72,7 +72,7 @@ const ArticleList = () => {
                 </span>
               </div>
 
-              <h3 className="mb-3 font-serif text-xl font-normal leading-snug tracking-tight text-foreground transition-colors duration-200 group-hover:text-primary md:text-2xl">
+              <h3 className="mb-3 font-sans text-[22px] font-bold leading-[1.15] tracking-[-0.02em] text-foreground underline-offset-4 group-hover:underline md:text-[24px]">
                 {post.title}
               </h3>
 
