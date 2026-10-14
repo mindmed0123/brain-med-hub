@@ -33,10 +33,10 @@ const ArticleList = () => {
     <section id="artigos" className="py-20 md:py-24">
       <div className="container mx-auto max-w-6xl px-6">
         <div className="mb-12">
-          <span className="mb-3 block font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-primary">
+          <span className="mb-3 block font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
             Arquivo
           </span>
-          <h2 className="font-serif text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+          <h2 className="font-serif text-3xl font-normal tracking-tight text-foreground md:text-4xl">
             Todos os artigos.
           </h2>
         </div>
@@ -61,7 +61,7 @@ const ArticleList = () => {
                 <div className="mb-5 aspect-[16/10] w-full rounded-sm bg-secondary/40" />
               )}
 
-              <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 font-sans text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+              <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
                 <span className="font-semibold text-primary">
                   {categoryLabel(post.category)}
                 </span>
@@ -72,17 +72,17 @@ const ArticleList = () => {
                 </span>
               </div>
 
-              <h3 className="mb-3 font-serif text-xl font-bold leading-snug tracking-tight text-foreground transition-colors duration-200 group-hover:text-primary md:text-2xl">
+              <h3 className="mb-3 font-serif text-xl font-normal leading-snug tracking-tight text-foreground transition-colors duration-200 group-hover:text-primary md:text-2xl">
                 {post.title}
               </h3>
 
               {post.subtitle && (
-                <p className="mb-4 line-clamp-3 font-serif text-base leading-relaxed text-muted-foreground">
+                <p className="mb-4 line-clamp-3 font-sans text-base leading-relaxed text-muted-foreground">
                   {post.subtitle}
                 </p>
               )}
 
-              <p className="mt-auto font-sans text-[11px] uppercase tracking-[0.15em] text-muted-foreground/70">
+              <p className="mt-auto font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground/70">
                 Por <span className="text-foreground">{post.author}</span> ·{" "}
                 {new Date(post.created_at).toLocaleDateString("pt-BR", {
                   day: "numeric",

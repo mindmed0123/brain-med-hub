@@ -15,13 +15,13 @@ const HeroSection = () => {
     return (
       <section id="inicio" className="border-b border-border py-16 md:py-20">
         <div className="container mx-auto max-w-4xl px-6 text-center">
-          <span className="mb-5 inline-block font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-primary">
+          <span className="mb-5 inline-block font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
             Publicação editorial
           </span>
-          <h1 className="mb-6 font-serif text-4xl font-bold leading-[1.1] tracking-tight text-foreground md:text-6xl">
+          <h1 className="mb-6 font-serif text-4xl font-normal leading-[1.1] tracking-tight text-foreground md:text-6xl">
             Medicina, evidência e o futuro da prática clínica.
           </h1>
-          <p className="mx-auto mb-8 max-w-2xl font-serif text-lg leading-relaxed text-muted-foreground md:text-xl">
+          <p className="mx-auto mb-8 max-w-2xl font-sans text-lg leading-relaxed text-muted-foreground md:text-xl">
             Análises aprofundadas sobre inteligência artificial, gestão clínica
             e transformação tecnológica na medicina contemporânea.
           </p>
@@ -52,18 +52,18 @@ const HeroSection = () => {
             </div>
           )}
           <div className="md:col-span-5">
-            <span className="mb-5 inline-block font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-primary">
+            <span className="mb-5 inline-block font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
               {categoryLabel(main.category)}
             </span>
-            <h1 className="mb-5 font-serif text-3xl font-bold leading-[1.15] tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary md:text-[2.5rem] lg:text-[2.75rem]">
+            <h1 className="mb-5 font-serif text-3xl font-normal leading-[1.15] tracking-tight text-foreground transition-colors duration-300 group-hover:text-primary md:text-[2.5rem] lg:text-[2.75rem]">
               {main.title}
             </h1>
             {main.subtitle && (
-              <p className="mb-8 font-serif text-base leading-relaxed text-muted-foreground md:text-lg">
+              <p className="mb-8 font-sans text-base leading-relaxed text-muted-foreground md:text-lg">
                 {main.subtitle}
               </p>
             )}
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-border pt-5 font-sans text-xs uppercase tracking-[0.15em] text-muted-foreground">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-border pt-5 font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground">
               <span className="flex items-center gap-1.5">
                 <Clock size={11} />
                 {main.read_time} min

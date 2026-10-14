@@ -27,10 +27,10 @@ const RelatedArticles = ({ currentSlug, currentCategory }: RelatedArticlesProps)
   return (
     <section className="mt-20 border-t border-border pt-14">
       <div className="mb-10">
-        <span className="mb-3 block font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-primary">
+        <span className="mb-3 block font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
           Continue lendo
         </span>
-        <h3 className="font-serif text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+        <h3 className="font-serif text-2xl font-normal tracking-tight text-foreground md:text-3xl">
           Artigos relacionados.
         </h3>
       </div>
@@ -51,13 +51,13 @@ const RelatedArticles = ({ currentSlug, currentCategory }: RelatedArticlesProps)
                 />
               </div>
             )}
-            <span className="mb-2 font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-primary">
+            <span className="mb-2 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
               {catLabel(article.category)}
             </span>
-            <h4 className="mb-3 font-serif text-lg font-bold leading-snug tracking-tight text-foreground transition-colors duration-200 group-hover:text-primary">
+            <h4 className="mb-3 font-serif text-lg font-normal leading-snug tracking-tight text-foreground transition-colors duration-200 group-hover:text-primary">
               {article.title}
             </h4>
-            <span className="mt-auto flex items-center gap-1.5 font-sans text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+            <span className="mt-auto flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
               <Clock size={11} />
               {article.read_time} min de leitura
             </span>

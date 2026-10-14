@@ -71,7 +71,7 @@ const TableOfContents = ({ content, mode = "inline" }: TableOfContentsProps) => 
   if (mode === "sidebar") {
     return (
       <nav aria-label="Índice do artigo">
-        <p className="mb-4 font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground/70">
+        <p className="mb-4 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground/70">
           Neste artigo
         </p>
         <ol className="space-y-1">
@@ -100,7 +100,7 @@ const TableOfContents = ({ content, mode = "inline" }: TableOfContentsProps) => 
       aria-label="Sumário do artigo"
       className="my-10 rounded-sm border border-border bg-secondary/30 p-6"
     >
-      <p className="mb-4 font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+      <p className="mb-4 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
         Neste artigo
       </p>
       <ol className="space-y-2">

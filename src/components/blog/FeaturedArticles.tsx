@@ -16,10 +16,10 @@ const FeaturedArticles = () => {
     <section id="destaques" className="border-b border-border py-20 md:py-24">
       <div className="container mx-auto max-w-6xl px-6">
         <div className="mb-12 max-w-2xl">
-          <span className="mb-3 block font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-primary">
+          <span className="mb-3 block font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
             Seleção editorial
           </span>
-          <h2 className="font-serif text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+          <h2 className="font-serif text-3xl font-normal tracking-tight text-foreground md:text-4xl">
             Em destaque.
           </h2>
         </div>
@@ -42,21 +42,21 @@ const FeaturedArticles = () => {
                 </div>
               )}
 
-              <span className="mb-3 inline-block font-sans text-[11px] font-semibold uppercase tracking-[0.25em] text-primary">
+              <span className="mb-3 inline-block font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
                 {categoryLabel(post.category)}
               </span>
 
-              <h3 className="mb-3 font-serif text-xl font-bold leading-snug tracking-tight text-foreground transition-colors duration-200 group-hover:text-primary md:text-2xl">
+              <h3 className="mb-3 font-serif text-xl font-normal leading-snug tracking-tight text-foreground transition-colors duration-200 group-hover:text-primary md:text-2xl">
                 {post.title}
               </h3>
 
               {post.subtitle && (
-                <p className="mb-5 flex-1 font-serif text-base leading-relaxed text-muted-foreground line-clamp-3">
+                <p className="mb-5 flex-1 font-sans text-base leading-relaxed text-muted-foreground line-clamp-3">
                   {post.subtitle}
                 </p>
               )}
 
-              <div className="flex items-center gap-3 border-t border-border pt-4 font-sans text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+              <div className="flex items-center gap-3 border-t border-border pt-4 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
                 <span className="flex items-center gap-1.5">
                   <Clock size={11} />
                   {post.read_time} min

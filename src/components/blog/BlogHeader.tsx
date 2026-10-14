@@ -55,10 +55,10 @@ const BlogHeader = () => {
             <img src={mindmedLogo} alt="MindMed" className="h-5 w-5 object-contain" />
           </div>
           <div className="flex flex-col leading-none">
-            <span className="font-serif text-base font-bold tracking-tight text-foreground">
+            <span className="font-serif text-base font-normal tracking-tight text-foreground">
               MindMed
             </span>
-            <span className="mt-0.5 font-sans text-[9px] font-medium uppercase tracking-[0.25em] text-muted-foreground">
+            <span className="mt-0.5 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
               Publicação editorial
             </span>
           </div>

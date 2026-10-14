@@ -52,7 +52,7 @@ export default function ShareButton({ slug, title }: Props) {
 
   return (
     <div className="my-12 flex flex-wrap items-center gap-3 border-y border-border py-6">
-      <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+      <span className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
         <Share2 size={12} className="mr-2 inline" />
         Compartilhar
       </span>

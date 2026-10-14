@@ -2,10 +2,10 @@ const AboutSection = () => {
   return (
     <section id="sobre" className="border-t border-border bg-secondary/40 py-20 md:py-28">
       <div className="container mx-auto max-w-3xl px-6">
-        <span className="mb-5 block font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-primary">
+        <span className="mb-5 block font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
           Sobre a publicação
         </span>
-        <h2 className="mb-8 font-serif text-3xl font-bold leading-tight tracking-tight text-foreground md:text-4xl">
+        <h2 className="mb-8 font-serif text-3xl font-normal leading-tight tracking-tight text-foreground md:text-4xl">
           Conteúdo médico independente, baseado em evidência.
         </h2>
         <div className="space-y-5 font-serif text-lg leading-relaxed text-muted-foreground">
@@ -30,8 +30,8 @@ const AboutSection = () => {
             { value: "Open access", label: "Leitura sem barreiras" },
           ].map((item) => (
             <div key={item.label} className="bg-background p-6">
-              <p className="font-serif text-xl font-bold text-foreground">{item.value}</p>
-              <p className="mt-1 font-sans text-xs uppercase tracking-[0.15em] text-muted-foreground">
+              <p className="font-sans text-xl font-bold text-foreground">{item.value}</p>
+              <p className="mt-1 font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground">
                 {item.label}
               </p>
             </div>

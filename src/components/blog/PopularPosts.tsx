@@ -34,10 +34,10 @@ const PopularPosts = () => {
     <section className="border-b border-border py-20 md:py-24">
       <div className="container mx-auto max-w-4xl px-6">
         <div className="mb-12">
-          <span className="mb-3 block font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-primary">
+          <span className="mb-3 block font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
             Mais lidos
           </span>
-          <h2 className="font-serif text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+          <h2 className="font-serif text-3xl font-normal tracking-tight text-foreground md:text-4xl">
             O que está sendo lido.
           </h2>
         </div>
@@ -49,14 +49,14 @@ const PopularPosts = () => {
                 to={`/artigo/${post.slug}`}
                 className="group grid grid-cols-[auto_1fr] items-baseline gap-6 py-8 transition-colors"
               >
-                <span className="font-serif text-3xl font-bold text-muted-foreground/40 transition-colors group-hover:text-primary md:text-4xl">
+                <span className="font-serif text-3xl font-normal text-muted-foreground/40 transition-colors group-hover:text-primary md:text-4xl">
                   {String(idx + 1).padStart(2, "0")}
                 </span>
                 <div>
-                  <span className="mb-2 block font-sans text-[10px] font-semibold uppercase tracking-[0.25em] text-primary">
+                  <span className="mb-2 block font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
                     {catLabel(post.category)}
                   </span>
-                  <h3 className="font-serif text-lg font-bold leading-snug tracking-tight text-foreground transition-colors group-hover:text-primary md:text-xl">
+                  <h3 className="font-serif text-lg font-normal leading-snug tracking-tight text-foreground transition-colors group-hover:text-primary md:text-xl">
                     {post.title}
                   </h3>
                 </div>
