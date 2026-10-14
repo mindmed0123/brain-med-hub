@@ -37,7 +37,7 @@ const ArticlePage = () => {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background">
         <div className="text-center">
-          <h1 className="mb-4 font-serif text-2xl font-bold text-foreground">
+          <h1 className="mb-4 font-serif text-2xl font-normal text-foreground">
             Artigo não encontrado
           </h1>
           <Link to="/" className="font-sans text-sm font-medium text-primary hover:underline">
@@ -82,7 +82,7 @@ const ArticlePage = () => {
   const isHtml = /^\s*<(?:p|h[1-6]|ul|ol|blockquote|table|div|figure|img)/i.test(post.content);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-card">
       <Helmet>
         <title>{`${post.title} — MindMed`}</title>
         <meta name="description" content={description.slice(0, 158)} />
@@ -114,17 +114,17 @@ const ArticlePage = () => {
 
           <header className="mx-auto max-w-2xl">
             <div className="mb-8">
-              <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-primary">
+              <span className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary">
                 {categoryLabel}
               </span>
             </div>
 
-            <h1 className="mb-6 font-serif text-3xl font-bold leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-[3.25rem]">
+            <h1 className="mb-6 font-serif text-3xl font-normal leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-[3.25rem]">
               {post.title}
             </h1>
 
             {post.subtitle && (
-              <p className="mb-10 font-serif text-lg leading-relaxed text-muted-foreground md:text-xl">
+              <p className="mb-10 font-sans text-lg leading-relaxed text-muted-foreground md:text-xl">
                 {post.subtitle}
               </p>
             )}
@@ -147,7 +147,7 @@ const ArticlePage = () => {
             </div>
             <div className="mt-8 flex items-center gap-4">
               <div className="h-px flex-1 bg-border" />
-              <span className="font-sans text-[10px] uppercase tracking-[0.3em] text-muted-foreground/50">
+              <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground/50">
                 MindMed
               </span>
               <div className="h-px flex-1 bg-border" />
@@ -181,10 +181,10 @@ const ArticlePage = () => {
                 className="my-12 border-l-2 border-primary bg-secondary/40 p-8 text-center"
                 aria-label="Dado em destaque"
               >
-                <p className="mb-2 font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-muted-foreground">
+                <p className="mb-2 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
                   {post.highlight_label}
                 </p>
-                <p className="font-serif text-5xl font-bold tracking-tight text-foreground md:text-6xl">
+                <p className="font-sans text-5xl font-bold tracking-tight text-foreground md:text-6xl">
                   {post.highlight_value}
                 </p>
               </aside>
@@ -200,9 +200,9 @@ const ArticlePage = () => {
               className="
                 article-content
                 prose prose-lg max-w-none
-                font-serif text-[1.0625rem] leading-[1.75] text-foreground/90
-                [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:scroll-mt-24 [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-foreground
-                [&_h3]:mt-10 [&_h3]:mb-3 [&_h3]:scroll-mt-24 [&_h3]:font-serif [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-foreground
+                font-body text-[1.0625rem] leading-[1.75] text-foreground/90
+                [&_h2]:mt-12 [&_h2]:mb-4 [&_h2]:scroll-mt-24 [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:font-normal [&_h2]:tracking-tight [&_h2]:text-foreground
+                [&_h3]:mt-10 [&_h3]:mb-3 [&_h3]:scroll-mt-24 [&_h3]:font-serif [&_h3]:text-xl [&_h3]:font-normal [&_h3]:text-foreground
                 [&_p]:my-5 [&_p]:text-foreground/85
                 [&_strong]:font-semibold [&_strong]:text-foreground
                 [&_a]:text-foreground [&_a]:underline [&_a]:underline-offset-4 [&_a]:decoration-primary/40 hover:[&_a]:decoration-primary

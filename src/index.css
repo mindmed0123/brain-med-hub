@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600;8..60,700;8..60,800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;700;800&family=JetBrains+Mono:wght@500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,44 +6,45 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 220 25% 8%;
+    --ink: 198 38% 9%;
+    --night: 203 29% 5%;
+    --paper: 44 31% 93%;
+    --brand: 168 62% 47%;
+    --brand-dark: 170 60% 30%;
+    --brand-light: 166 62% 84%;
+    --sand: 44 15% 88%;
+    --gray: 198 8% 39%;
+    --gray-on-dark: 200 6% 57%;
 
-    --card: 220 15% 97%;
-    --card-foreground: 220 25% 8%;
-
+    --background: var(--paper);
+    --foreground: var(--ink);
+    --card: 0 0% 100%;
+    --card-foreground: var(--ink);
     --popover: 0 0% 100%;
-    --popover-foreground: 220 25% 8%;
-
-    --primary: 207 90% 42%;
+    --popover-foreground: var(--ink);
+    --primary: var(--brand-dark);
     --primary-foreground: 0 0% 100%;
-
-    --secondary: 220 15% 96%;
-    --secondary-foreground: 220 25% 8%;
-
-    --muted: 220 12% 93%;
-    --muted-foreground: 220 10% 42%;
-
-    --accent: 207 90% 42%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84.2% 60.2%;
+    --secondary: var(--sand);
+    --secondary-foreground: var(--ink);
+    --muted: var(--sand);
+    --muted-foreground: var(--gray);
+    --accent: var(--brand-light);
+    --accent-foreground: var(--ink);
+    --destructive: 0 72% 45%;
     --destructive-foreground: 0 0% 100%;
-
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 207 90% 42%;
-
+    --border: var(--sand);
+    --input: 43 11% 78%;
+    --ring: var(--brand);
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 207 90% 42%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: var(--ink);
+    --sidebar-primary: var(--brand-dark);
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 15% 96%;
-    --sidebar-accent-foreground: 220 25% 8%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 207 90% 42%;
+    --sidebar-accent: var(--sand);
+    --sidebar-accent-foreground: var(--ink);
+    --sidebar-border: var(--sand);
+    --sidebar-ring: var(--brand);
   }
 }
 
@@ -58,26 +59,49 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid hsl(var(--ink));
+    outline-offset: 2px;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
-    @apply font-bold tracking-tight;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
+    @apply tracking-tight;
   }
 
   ::selection {
-    background: hsl(207 90% 42% / 0.15);
+    background: hsl(var(--brand-light));
   }
 }
 
 @layer utilities {
-  .font-serif {
-    font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  .highlight {
+    background: hsl(var(--brand-light));
+    padding: 0 0.15em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
   }
-
-  .font-sans {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  .highlight-dark {
+    background: hsl(var(--brand));
+    color: hsl(var(--ink));
+    padding: 0 0.15em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  .label-cat {
+    @apply font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-primary;
+  }
+  .divider { @apply h-px w-full bg-border; }
+  .logo-ruled {
+    @apply flex items-center gap-4 font-serif;
+  }
+  .logo-ruled::before, .logo-ruled::after {
+    content: ""; @apply h-px flex-1 bg-current opacity-60;
   }
 
   .line-thin {
@@ -88,6 +112,7 @@
 /* ===== MINDMED READING EXPERIENCE ===== */
 
 .article-content {
+  font-family: 'Source Serif 4', Georgia, serif;
   font-size: 1.125rem !important;
   line-height: 1.8 !important;
 }
@@ -111,7 +136,7 @@
   margin-top: 0.04em;
   font-weight: 700;
   color: hsl(var(--foreground));
-  font-family: 'Source Serif 4', Georgia, serif;
+  font-family: 'Instrument Serif', Georgia, serif;
 }
 
 .article-content h2::before {

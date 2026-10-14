@@ -29,7 +29,7 @@ const ReadingProgress = () => {
         className="fixed left-0 top-0 z-[9999] h-[3px] transition-none"
         style={{
           width: `${progress}%`,
-          background: "linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary) / 0.7))",
+          background: "hsl(var(--brand))",
         }}
         aria-hidden="true"
       />

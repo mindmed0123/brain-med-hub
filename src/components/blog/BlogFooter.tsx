@@ -1,5 +1,4 @@
 import { Linkedin, Instagram, Twitter, Mail } from "lucide-react";
-import mindmedLogo from "@/assets/mindmed-logo.png";
 import NewsletterBlock from "./NewsletterBlock";
 
 const BlogFooter = () => {
@@ -20,15 +19,12 @@ const BlogFooter = () => {
           {/* Sobre */}
           <div className="md:col-span-5">
             <div className="mb-4 flex items-center gap-2.5">
-              <div className="flex h-7 w-7 items-center justify-center overflow-hidden rounded bg-foreground">
-                <img src={mindmedLogo} alt="MindMed" className="h-5 w-5 object-contain" />
-              </div>
-              <span className="font-serif text-base font-bold text-foreground">MindMed</span>
-              <span className="font-sans text-[10px] font-medium uppercase tracking-[0.25em] text-muted-foreground">
+              <span className="font-serif text-[30px] leading-none text-foreground">O Prontuário</span>
+              <span className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
                 Publicação editorial
               </span>
             </div>
-            <p className="max-w-md font-serif text-sm leading-relaxed text-muted-foreground">
+            <p className="max-w-md font-sans text-sm leading-relaxed text-muted-foreground">
               A maior referência em Inteligência Artificial na Saúde do Brasil.
               Análises independentes sobre tecnologia, gestão clínica e o futuro
               da prática médica baseada em evidência.
@@ -73,7 +69,7 @@ const BlogFooter = () => {
 
           {/* Navegação */}
           <div className="md:col-span-3">
-            <h4 className="mb-4 font-sans text-[11px] font-semibold uppercase tracking-[0.25em] text-foreground">
+            <h4 className="mb-4 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-foreground">
               Navegação
             </h4>
             <ul className="space-y-2.5">
@@ -98,10 +94,10 @@ const BlogFooter = () => {
 
           {/* Newsletter */}
           <div className="md:col-span-4">
-            <h4 className="mb-2 font-sans text-[11px] font-semibold uppercase tracking-[0.25em] text-foreground">
+            <h4 className="mb-2 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-foreground">
               Assine gratuitamente
             </h4>
-            <p className="mb-4 font-serif text-sm leading-relaxed text-muted-foreground">
+            <p className="mb-4 font-sans text-sm leading-relaxed text-muted-foreground">
               IA na Saúde toda semana, direto no seu email.
             </p>
             <NewsletterBlock variant="footer" />

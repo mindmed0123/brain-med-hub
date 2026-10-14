@@ -15,7 +15,7 @@ const ReferencesBlock = ({ references }: ReferencesBlockProps) => {
     <section className="mt-16 border-t border-border pt-10" aria-labelledby="referencias">
       <h2
         id="referencias"
-        className="mb-6 font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-primary"
+        className="mb-6 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-primary"
       >
         Referências
       </h2>
