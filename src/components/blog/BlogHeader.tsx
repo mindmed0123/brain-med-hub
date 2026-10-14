@@ -49,18 +49,11 @@ const BlogHeader = () => {
       }`}
     >
       <div className="container mx-auto flex h-16 items-center justify-between px-6">
-        <Link to="/" className="group flex items-center gap-2.5">
-          <div className="flex h-7 w-7 items-center justify-center overflow-hidden rounded bg-foreground transition-transform duration-200 group-hover:scale-105">
-            <img src={mindmedLogo} alt="MindMed" className="h-5 w-5 object-contain" />
-          </div>
-          <div className="flex flex-col leading-none">
-            <span className="font-serif text-base font-normal tracking-tight text-foreground">
-              MindMed
-            </span>
-            <span className="mt-0.5 font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-              Publicação editorial
-            </span>
-          </div>
+        <Link to="/" className="flex items-baseline gap-3" aria-label="O Prontuário — O jornal do médico">
+          <span className="font-serif text-[28px] leading-none text-foreground">O Prontuário</span>
+          <span className="hidden font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-muted-foreground sm:inline">
+            O jornal do médico
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
